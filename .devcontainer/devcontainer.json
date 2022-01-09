@@ -23,7 +23,8 @@
 		"bazelbuild.vscode-bazel",
 		"ms-vscode.cpptools",
 		"matepek.vscode-catch2-test-adapter",
-		"jeff-hykin.better-cpp-syntax"
+		"jeff-hykin.better-cpp-syntax",
+		"galexite.bazel-cpp-tools"
 	],
 
 	"mounts": [
