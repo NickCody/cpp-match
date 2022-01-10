@@ -5,8 +5,7 @@
  * 
  */
 
-#ifndef __TIMER_HPP__
-#define __TIMER_HPP__
+#pragma once
 
 #include <chrono>
 #include <thread>
@@ -60,5 +59,3 @@ namespace common {
 	};
 	
 } // namespace common
-
-#endif

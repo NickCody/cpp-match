@@ -5,8 +5,7 @@
  * 
  */
 
-#ifndef __HISTOGRAM_H__
-#define __HISTOGRAM_H__
+#pragma once
 
 #include <fstream>
 #include <iomanip>
@@ -210,5 +209,3 @@ class Histogram {
 };
 
 } // namespace common
-
-#endif // __HISTOGRAM_H__

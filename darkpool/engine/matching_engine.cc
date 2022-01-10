@@ -11,6 +11,8 @@
 #include "common/stopwatch.h"
 #include "darkpool/engine/matching_engine.h"
 
+using namespace common::model;
+
 namespace darkpool {
 
 MatchingEngine::MatchingEngine(const std::string& name, bool concurrent) 
@@ -156,9 +158,9 @@ void MatchingEngine::match(Order& order, OrderBookPtr order_book) {
 
         auto& contra_order = order_book->get_contra_orders(order).front();
 
-        if ( (order.side == darkpool::Order::SIDE::BUY && contra_order.price <= order.price)
+        if ( (order.side == Order::SIDE::BUY && contra_order.price <= order.price)
              ||
-             (order.side == darkpool::Order::SIDE::SELL && contra_order.price >= order.price))
+             (order.side == Order::SIDE::SELL && contra_order.price >= order.price))
         {
             int trade_quantity = std::min(order.remaining_quantity, contra_order.remaining_quantity);
             double price = contra_order.price;

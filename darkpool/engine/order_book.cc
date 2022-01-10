@@ -8,6 +8,7 @@
 #include <iostream>
 #include "darkpool/engine/order_book.h"
 
+using namespace common::model;
 
 namespace darkpool {
 

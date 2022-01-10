@@ -26,8 +26,8 @@ void pass() {
 
 void testOrderFromString(const std::string& os) {
     try {
-        auto order = darkpool::OrderFactory::from_string(os);
-        std::cout << order.to_string() << std::endl;
+        auto order = OrderFactory::from_string(os);
+        std::cout << order << std::endl;
     } catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
         exit(1);
@@ -36,10 +36,10 @@ void testOrderFromString(const std::string& os) {
 
 void testOrderCreation() {
     try {
-        auto order = darkpool::OrderFactory::from_string("plu401 SELL ETHUSD   5   170");
+        auto order = OrderFactory::from_string("plu401 SELL ETHUSD   5   170");
         
         assert(order.order_id.compare("plu401") == 0);
-        assert(order.side == darkpool::Order::SIDE::SELL);
+        assert(order.side == Order::SIDE::SELL);
         assert(order.instrument.compare("ETHUSD") == 0);
         assert(order.remaining_quantity == 5);
         assert(order.price == 170.0);
@@ -54,9 +54,9 @@ void testOrderCreation() {
 
 void testOrderComparison() {
 
-    darkpool::OrderPtr o1(new darkpool::Order(common::get_current_milliseconds(), "1", darkpool::Order::SIDE::BUY, "XOXO", 100L, 1000.0));
-    darkpool::OrderPtr o1a = o1;
-    darkpool::OrderPtr o2(new darkpool::Order(common::get_current_milliseconds(), "2", darkpool::Order::SIDE::SELL, "YNYM", 200L, 3000.0));
+    OrderPtr o1(new Order(common::get_current_milliseconds(), "1", Order::SIDE::BUY, "XOXO", 100L, 1000.0));
+    OrderPtr o1a = o1;
+    OrderPtr o2(new Order(common::get_current_milliseconds(), "2", Order::SIDE::SELL, "YNYM", 200L, 3000.0));
 
     assert(*o1 == *o1a);
     assert(*o1 != *o2);
@@ -68,10 +68,10 @@ void testOrderHeapAllocation(int count) {
     common::Stopwatch<double,std::chrono::seconds> stopwatch;
  
     stopwatch.print_duration("Time (seconds) for creating objects: ", [count]() {
-        std::vector<darkpool::OrderPtr> orders;
+        std::vector<OrderPtr> orders;
         for (int i=0; i < count; i++) {
             std::string order_id = std::to_string(i);
-            orders.push_back(darkpool::OrderPtr(new darkpool::Order(common::get_current_milliseconds(), order_id, darkpool::Order::SIDE::BUY, "XOXO", 100L, 1000.0)));
+            orders.push_back(OrderPtr(new Order(common::get_current_milliseconds(), order_id, Order::SIDE::BUY, "XOXO", 100L, 1000.0)));
         }
     });
 
@@ -83,7 +83,7 @@ void testOrderGenerator(int count, int num_instruments) {
     testutil::DupeMap dupe_map;
 
     for (int i=0; count == -1 || i < count; i++) {
-        darkpool::OrderPtr order = order_generator.generate_random_order(dupe_map);
+        OrderPtr order = order_generator.generate_random_order(dupe_map);
         std::cout << order->to_string(' ') << std::endl;
         dupe_map[order->order_id] = order;
     }
@@ -99,9 +99,9 @@ void testOrderRanking() {
 
     // orders with same price are ranked by timestamp
     {
-        auto o1 = darkpool::Order(millis, "1", darkpool::Order::SIDE::BUY, "XOXO", 100L, 1000.0);
-        auto o2 = darkpool::Order(millis+one, "2", darkpool::Order::SIDE::BUY, "XOXO", 200L, 1000.0);
-        auto o3 = darkpool::Order(millis+two, "2", darkpool::Order::SIDE::BUY, "XOXO", 200L, 1000.0);
+        auto o1 = Order(millis, "1", Order::SIDE::BUY, "XOXO", 100L, 1000.0);
+        auto o2 = Order(millis+one, "2", Order::SIDE::BUY, "XOXO", 200L, 1000.0);
+        auto o3 = Order(millis+two, "2", Order::SIDE::BUY, "XOXO", 200L, 1000.0);
         assert( o2 < o1 );
         assert( o3 < o1 );
         assert( o3 < o2 );
@@ -109,16 +109,16 @@ void testOrderRanking() {
 
     // buys are ranked by price, lower price is ranked lower
     {
-        auto o1 = darkpool::Order(millis, "1", darkpool::Order::SIDE::BUY, "XOXO", 100L, 1000.0);
-        auto o2 = darkpool::Order(millis, "2", darkpool::Order::SIDE::BUY, "XOXO", 200L, 1001.0);
+        auto o1 = Order(millis, "1", Order::SIDE::BUY, "XOXO", 100L, 1000.0);
+        auto o2 = Order(millis, "2", Order::SIDE::BUY, "XOXO", 200L, 1001.0);
         assert( o1 < o2 );
         assert( !(o2 < o1) );
     }
 
     // sells are ranked by price, higher price is ranked lower
     {
-        auto o1 = darkpool::Order(millis, "1", darkpool::Order::SIDE::SELL, "XOXO", 100L, 1000.0);
-        auto o2 = darkpool::Order(millis, "2", darkpool::Order::SIDE::SELL, "XOXO", 200L, 1001.0);
+        auto o1 = Order(millis, "1", Order::SIDE::SELL, "XOXO", 100L, 1000.0);
+        auto o2 = Order(millis, "2", Order::SIDE::SELL, "XOXO", 200L, 1001.0);
         assert( o2 < o1 );
         assert( !(o1 < o2) );
     }
@@ -131,13 +131,13 @@ void testOrderHeapOrdering() {
 
     // works for heaps of Order
     {
-        std::vector<darkpool::Order> orders;
+        std::vector<Order> orders;
 
-        orders.push_back(darkpool::Order(now, "0", darkpool::Order::SIDE::SELL, "XOXO", 100L, 1000.0));
-        orders.push_back(darkpool::Order(now, "1", darkpool::Order::SIDE::SELL, "XOXO", 200L, 1003.0));
-        orders.push_back(darkpool::Order(now, "2", darkpool::Order::SIDE::SELL, "XOXO", 300L, 1002.0));
-        orders.push_back(darkpool::Order(now, "3", darkpool::Order::SIDE::SELL, "XOXO", 400L, 1004.0));
-        orders.push_back(darkpool::Order(now, "4", darkpool::Order::SIDE::SELL, "XOXO", 500L, 1001.0));
+        orders.push_back(Order(now, "0", Order::SIDE::SELL, "XOXO", 100L, 1000.0));
+        orders.push_back(Order(now, "1", Order::SIDE::SELL, "XOXO", 200L, 1003.0));
+        orders.push_back(Order(now, "2", Order::SIDE::SELL, "XOXO", 300L, 1002.0));
+        orders.push_back(Order(now, "3", Order::SIDE::SELL, "XOXO", 400L, 1004.0));
+        orders.push_back(Order(now, "4", Order::SIDE::SELL, "XOXO", 500L, 1001.0));
 
         std::make_heap(orders.begin(), orders.end());
 
@@ -150,13 +150,13 @@ void testOrderHeapOrdering() {
 
     // and also heaps of OrderPtr
     {
-        std::vector<darkpool::OrderPtr> orders;
+        std::vector<OrderPtr> orders;
 
-        orders.push_back(darkpool::OrderPtr(new darkpool::Order(now, "0", darkpool::Order::SIDE::SELL, "XOXO", 100L, 1000.0)));
-        orders.push_back(darkpool::OrderPtr(new darkpool::Order(now, "1", darkpool::Order::SIDE::SELL, "XOXO", 200L, 1003.0)));
-        orders.push_back(darkpool::OrderPtr(new darkpool::Order(now, "2", darkpool::Order::SIDE::SELL, "XOXO", 300L, 1002.0)));
-        orders.push_back(darkpool::OrderPtr(new darkpool::Order(now, "3", darkpool::Order::SIDE::SELL, "XOXO", 400L, 1004.0)));
-        orders.push_back(darkpool::OrderPtr(new darkpool::Order(now, "4", darkpool::Order::SIDE::SELL, "XOXO", 500L, 1001.0)));
+        orders.push_back(OrderPtr(new Order(now, "0", Order::SIDE::SELL, "XOXO", 100L, 1000.0)));
+        orders.push_back(OrderPtr(new Order(now, "1", Order::SIDE::SELL, "XOXO", 200L, 1003.0)));
+        orders.push_back(OrderPtr(new Order(now, "2", Order::SIDE::SELL, "XOXO", 300L, 1002.0)));
+        orders.push_back(OrderPtr(new Order(now, "3", Order::SIDE::SELL, "XOXO", 400L, 1004.0)));
+        orders.push_back(OrderPtr(new Order(now, "4", Order::SIDE::SELL, "XOXO", 500L, 1001.0)));
 
         std::make_heap(orders.begin(), orders.end());
 

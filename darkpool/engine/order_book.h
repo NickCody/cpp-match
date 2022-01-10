@@ -9,7 +9,10 @@
 
 #include <vector>
 #include <memory>
+
 #include "common/model/order.h"
+
+using namespace common::model;
 
 namespace darkpool {
 

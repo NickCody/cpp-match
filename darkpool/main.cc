@@ -16,6 +16,8 @@
 #include "darkpool/engine/darkpool_service.h"
 #include "darkpool/engine/order_provider/order_provider.h"
 
+using namespace common::model;
+
 void usage() {
         std::cout << "DarkPool" << std::endl;
         std::cout << "Usage: DarkPool [batch-size] [concurrency] [filename]" << std::endl;

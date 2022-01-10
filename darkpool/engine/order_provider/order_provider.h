@@ -12,6 +12,8 @@
 #include <fstream> 
 #include "common/model/order.h"
 
+using namespace common::model;
+
 namespace darkpool {
 
     class OrderProvider {

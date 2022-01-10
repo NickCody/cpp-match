@@ -1,351 +1,96 @@
 [
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c match-engine/main.cpp",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "match-engine/main.cpp"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/args.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/chrono.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/chrono.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/color.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/color.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/compile.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/compile.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format-inl.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format-inl.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/locale.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/locale.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/os.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/os.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ostream.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ostream.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/printf.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/printf.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ranges.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ranges.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/xchar.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/xchar.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/format.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/format.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/os.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/os.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libncursesw.a",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/ncurses/lib/x86_64-linux-gnu/libncursesw.a"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libtinfo.a",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/ncurses/lib/x86_64-linux-gnu/libtinfo.a"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c util/cppversion.cpp",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "util/cppversion.cpp"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/args.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/chrono.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/chrono.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/color.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/color.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/compile.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/compile.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format-inl.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format-inl.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/locale.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/locale.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/os.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/os.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ostream.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ostream.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/printf.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/printf.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ranges.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ranges.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/xchar.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/xchar.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/format.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/format.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/os.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/os.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libncursesw.a",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/ncurses/lib/x86_64-linux-gnu/libncursesw.a"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libtinfo.a",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/ncurses/lib/x86_64-linux-gnu/libtinfo.a"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c util/scratch.cpp",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "util/scratch.cpp"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/order_generator.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "darkpool-test/order_generator.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/order_generator.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "darkpool-test/order_generator.h"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "darkpool-test/test_order.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order_semantics.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "darkpool-test/test_order_semantics.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order_semantics.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "darkpool-test/test_order_semantics.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/args.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/chrono.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/chrono.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/color.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/color.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/compile.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/compile.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format-inl.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format-inl.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/locale.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/locale.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/os.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/os.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ostream.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ostream.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/printf.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/printf.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ranges.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/ranges.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/xchar.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/xchar.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/format.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/format.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/os.cc",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/src/os.cc"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/core.h"
-  },
-  {
-    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
-    "directory": "/workspaces/trade/bazel-trade",
-    "file": "external/fmt/include/fmt/format.h"
-  },
-  {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/common.cpp"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/model/order.cpp"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/common.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/histogram.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/model/order.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/model/order_factory.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/stopwatch.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/order_generator.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool-test/order_generator.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/order_generator.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool-test/order_generator.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool-test/test_order.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order_semantics.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool-test/test_order_semantics.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool-test/test_order_semantics.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool-test/test_order_semantics.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/histogram.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order_factory.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "common/stopwatch.h"
   },
@@ -480,6 +225,86 @@
     "file": "actor/actor.cpp"
   },
   {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/main.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "darkpool/main.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/histogram.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order_factory.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/stopwatch.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c actor-match/main.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "actor-match/main.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/histogram.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order_factory.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/stopwatch.h"
+  },
+  {
     "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "external/fmt/include/fmt/args.h"
@@ -565,89 +390,319 @@
     "file": "external/fmt/include/fmt/format.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/darkpool_service.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/darkpool_service.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/darkpool_service.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/matching_engine.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/matching_engine.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/matching_engine.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_book.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_book.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_book.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/filename_stream_order_provider.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/filename_stream_order_provider.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_provider/filename_stream_order_provider.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/input_stream_order_provider.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/input_stream_order_provider.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_provider/input_stream_order_provider.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/stdin_order_provider.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/stdin_order_provider.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_provider/stdin_order_provider.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/instrument_boundary_routing_strategy.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/instrument_boundary_routing_strategy.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/routing/instrument_boundary_routing_strategy.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/order_router.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/order_router.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/routing/order_router.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/main.cc",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/main.cc",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/main.cc"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/config/config.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/config/config.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/config/config.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/darkpool_service.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/darkpool_service.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/darkpool_service.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/matching_engine.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/matching_engine.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/matching_engine.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_book.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_book.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_book.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/order_provider.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/order_provider/order_provider.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/order_provider/order_provider.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/order_router.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/order_router.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/routing/order_router.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/routing_strategy.h",
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/darkpool/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c darkpool/engine/routing/routing_strategy.h",
     "directory": "/workspaces/trade/bazel-trade",
     "file": "darkpool/engine/routing/routing_strategy.h"
   },
   {
-    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c match-engine/main.cpp",
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
     "directory": "/workspaces/trade/bazel-trade",
-    "file": "match-engine/main.cpp"
+    "file": "external/fmt/include/fmt/args.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/chrono.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/chrono.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/color.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/color.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/compile.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/compile.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/core.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format-inl.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format-inl.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/locale.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/locale.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/os.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/os.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ostream.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/ostream.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/printf.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/printf.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ranges.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/ranges.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/xchar.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/xchar.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/format.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/src/format.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/os.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/src/os.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/core.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libncursesw.a",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/ncurses/lib/x86_64-linux-gnu/libncursesw.a"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libtinfo.a",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/ncurses/lib/x86_64-linux-gnu/libtinfo.a"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c util/scratch.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "util/scratch.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/args.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/args.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/chrono.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/chrono.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/color.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/color.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/compile.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/compile.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/core.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format-inl.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format-inl.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/locale.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/locale.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/os.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/os.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ostream.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/ostream.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/printf.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/printf.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/ranges.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/ranges.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/xchar.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/xchar.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/format.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/src/format.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/src/os.cc",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/src/os.cc"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/core.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/core.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -std=c++0x -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -x c++ -c external/fmt/include/fmt/format.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/fmt/include/fmt/format.h"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libncursesw.a",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/ncurses/lib/x86_64-linux-gnu/libncursesw.a"
+  },
+  {
+    "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -c external/ncurses/lib/x86_64-linux-gnu/libtinfo.a",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "external/ncurses/lib/x86_64-linux-gnu/libtinfo.a"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -isystem external/fmt/include -isystem bazel-out/k8-fastbuild/bin/external/fmt/include -isystem external/fmt/src -isystem bazel-out/k8-fastbuild/bin/external/fmt/src -I bazel-out/k8-fastbuild/bin/external/fmt/_virtual_includes/main -iquote . -iquote bazel-out/k8-fastbuild/bin -iquote external/fmt -iquote bazel-out/k8-fastbuild/bin/external/fmt -iquote external/ncurses -iquote bazel-out/k8-fastbuild/bin/external/ncurses -iquote external/bazel_tools -iquote bazel-out/k8-fastbuild/bin/external/bazel_tools -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c util/cppversion.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "util/cppversion.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.cpp",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.cpp"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/common.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/common.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/histogram.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/histogram.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/model/order_factory.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/model/order_factory.h"
+  },
+  {
+    "command": "/usr/bin/gcc -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -I bazel-out/k8-fastbuild/bin/common/_virtual_includes/lib -iquote . -iquote bazel-out/k8-fastbuild/bin -x c++ -std=c++20 -Wall -Werror -Wextra -Wno-ignored-qualifiers -Woverloaded-virtual -Wvla -pedantic -O3 -c common/stopwatch.h",
+    "directory": "/workspaces/trade/bazel-trade",
+    "file": "common/stopwatch.h"
   },
   {
     "command": "/usr/bin/gcc -U_FORTIFY_SOURCE -fstack-protector -Wall -Wunused-but-set-parameter -Wno-free-nonheap-object -fno-omit-frame-pointer -Wno-builtin-macro-redefined -D__DATE__=\"redacted\" -D__TIMESTAMP__=\"redacted\" -D__TIME__=\"redacted\" -iquote external/caf -iquote bazel-out/k8-fastbuild/bin/external/caf -c external/caf/lib/libcaf_openssl.so.0.18.5",
