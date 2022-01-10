@@ -5,7 +5,19 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add - \
+    && echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list \
+    && echo "deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list \
+    && echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-12 main"  >> /etc/apt/sources.list \
+    && echo "deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-12 main" >> /etc/apt/sources.list \
+    && curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg \
+    && sudo mv bazel.gpg /etc/apt/trusted.gpg.d/ \
+    && echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list \
+    && apt-get update \
+    && apt install -y software-properties-common \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+    && apt-get update \
+    && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         apt-transport-https \
         ca-certificates \
@@ -13,19 +25,13 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         gnupg2 \
         libssl-dev \
         vim \
-        software-properties-common \
         graphviz xdot \
         ninja-build \
-    &&  add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/debian \
-        $(lsb_release -cs) \
-        stable" \
-    && curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg \
-    && sudo mv bazel.gpg /etc/apt/trusted.gpg.d/ \
-    && echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list \
-    && apt-get update \
-    && apt-get -y install docker-ce-cli bazel \
-    && rm -rf /var/lib/apt/lists/*
+        clang-format-14 \
+        docker-ce-cli \
+        bazel \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 RUN curl -L -O https://golang.org/dl/go1.15.5.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz \

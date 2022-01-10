@@ -15,10 +15,10 @@ cc_binary(
     name = "main",
     copts = global_copts(),
     deps = [
+        "//common:lib",
+        "//match-engine:lib",
         "@caf//:main",
         "@fmt//:main",
         "@ncurses//:main",
-        "//common:lib",
-        "//match:lib"
     ],
 )
