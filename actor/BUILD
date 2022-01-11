@@ -13,3 +13,14 @@ cc_binary(
         "@ncurses//:main",
     ],
 )
+
+cc_binary(
+    name = "class",
+    srcs = ["class.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@caf//:main",
+        "@fmt//:main",
+        "@ncurses//:main",
+    ],
+)
