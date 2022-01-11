@@ -29,7 +29,6 @@ namespace darkpool {
           bad_data << "While reading from input, encountered a bad input line: " << e.what() << std::ends;
           throw std::invalid_argument(bad_data.str());
         }
-
       } else {
         return false;
       }

@@ -48,7 +48,6 @@ darkpool::Config parse_command_line(int argc, char** argv) {
       config.filename = argv[3];
     else
       config.filename = "-";
-
   } catch (std::invalid_argument& e) {
     std::cout << "Invalid parameter: " << e.what() << std::endl;
     usage();

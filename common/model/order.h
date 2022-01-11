@@ -29,6 +29,15 @@ namespace common::model {
 
     Order() {}
 
+    Order(const Order& order) {
+      timestamp = order.timestamp;
+      order_id = order.order_id;
+      side = order.side;
+      instrument = order.instrument;
+      remaining_quantity = order.remaining_quantity;
+      price = order.price;
+    }
+
     Order(std::chrono::milliseconds timestamp, const std::string& order_id, SIDE side, const std::string& instrument,
           long remaining_quantity, double price) {
       this->timestamp = timestamp;
@@ -92,15 +101,13 @@ namespace common::model {
   //
   bool operator<(const OrderPtr& lhs, const OrderPtr& rhs);
 
-  // template <class Inspector> bool inspect(Inspector &f, const Order &x) {
-  //   return f.object(x).fields(f.field("order_id", x.order_id),
-  //                             f.field("side", x.side),
-  //                             f.field("instrument", x.instrument),
-  //                             f.field("remaining_quantity",
-  //                             x.remaining_quantity), f.field("price",
-  //                             x.price));
-  //}
-
+  template <class Inspector> bool inspect(Inspector& f, Order& x) {
+    return f.object(x).fields(f.field("order_id", x.order_id),
+                              f.field("side", x.side),
+                              f.field("instrument", x.instrument),
+                              f.field("remaining_quantity", x.remaining_quantity),
+                              f.field("price", x.price));
+  }
 } // namespace common::model
 
 // namespace caf {

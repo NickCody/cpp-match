@@ -43,7 +43,6 @@ void testOrderCreation() {
     assert(order.price == 170.0);
 
     pass();
-
   } catch (std::invalid_argument& e) {
     std::cerr << e.what() << std::endl;
     exit(1);

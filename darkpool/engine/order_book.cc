@@ -52,7 +52,6 @@ namespace darkpool {
     if (order.side == Order::SIDE::BUY) {
       buys.push_back(order);
       std::push_heap(buys.begin(), buys.end());
-
     } else {
       sells.push_back(order);
       std::push_heap(sells.begin(), sells.end());
