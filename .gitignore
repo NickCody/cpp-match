@@ -339,3 +339,4 @@ bazel-testlogs
 bazel-trade
 .cache/
 
+compile_commands.json
