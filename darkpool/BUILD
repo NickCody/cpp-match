@@ -23,7 +23,10 @@ cc_binary(
     name = "main",
     srcs = ["main.cc"],
     copts = global_copts(),
-    linkopts = ["-pthread"],
+    linkopts = [
+        "-pthread",
+        "-lstdc++fs",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         "//darkpool:lib",

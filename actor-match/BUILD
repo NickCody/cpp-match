@@ -17,6 +17,10 @@ cc_library(
 cc_binary(
     name = "main",
     copts = global_copts(),
+    linkopts = [
+        "-pthread",
+        "-lstdc++fs",
+    ],
     deps = [
         "//actor-match:lib",
         "//common:lib",

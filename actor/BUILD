@@ -7,6 +7,10 @@ cc_binary(
     name = "actor",
     srcs = ["actor.cpp"],
     copts = global_copts(),
+    linkopts = [
+        "-pthread",
+        "-lstdc++fs",
+    ],
     deps = [
         "@caf//:main",
         "@fmt//:main",
@@ -18,6 +22,10 @@ cc_binary(
     name = "class",
     srcs = ["class.cpp"],
     copts = global_copts(),
+    linkopts = [
+        "-pthread",
+        "-lstdc++fs",
+    ],
     deps = [
         "@caf//:main",
         "@fmt//:main",
