@@ -6,6 +6,7 @@
 #include "caf/actor_system.hpp"
 #include "caf/caf_main.hpp"
 #include "caf/event_based_actor.hpp"
+
 #include "common/model/order.h"
 #include "common/model/order_factory.h"
 
@@ -13,9 +14,14 @@ using namespace caf;
 using namespace common::model;
 
 behavior process_order(event_based_actor* self) {
-  return {[=](const std::string& order) {
-    aout(self) << "Received order: " << order << std::endl;
-  }};
+  return { [=](const std::string& order) {
+            aout(self) << "Received order: " << order << std::endl;
+            aout(self) << "Received order: " << order << std::endl;
+            aout(self) << "Received order: " << order << std::endl;
+            aout(self) << "Received order: " << order << std::endl;
+            aout(self) << "Received order: " << order << std::endl;
+          },
+           [=](int count) { aout(self) << "Received count: " << count << std::endl; } };
 }
 
 void read_stdin(event_based_actor* self, const actor& po) {

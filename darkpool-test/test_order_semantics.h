@@ -2,7 +2,7 @@
  * Nick Codignotto
  *
  * nick.codignotto@gmail.com / twitter: @nickcoding / blog: nickcoding.com
- * 
+ *
  */
 
 #ifndef __ORDER_SEMANTICS_HPP__

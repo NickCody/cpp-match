@@ -15,9 +15,7 @@
 #include <caf/inspector_access.hpp>
 
 namespace common::model {
-
   struct Order {
-
     enum SIDE { BUY, SELL };
 
     std::chrono::milliseconds timestamp;
@@ -29,9 +27,9 @@ namespace common::model {
     long remaining_quantity;
     double price;
 
-    Order() {
-    }
-    Order(std::chrono::milliseconds timestamp, const std::string &order_id, SIDE side, const std::string &instrument,
+    Order() {}
+
+    Order(std::chrono::milliseconds timestamp, const std::string& order_id, SIDE side, const std::string& instrument,
           long remaining_quantity, double price) {
       this->timestamp = timestamp;
       this->order_id = order_id;
@@ -41,8 +39,8 @@ namespace common::model {
       this->price = price;
     }
 
-    Order(std::chrono::milliseconds timestamp, const std::string &order_id, const std::string &side,
-          const std::string &instrument, long remaining_quantity, double price) {
+    Order(std::chrono::milliseconds timestamp, const std::string& order_id, const std::string& side,
+          const std::string& instrument, long remaining_quantity, double price) {
       this->timestamp = timestamp;
       this->order_id = order_id;
       if (side.compare("BUY") == 0)
@@ -66,7 +64,8 @@ namespace common::model {
     // sell/sell less means ranked lower low buy price is ranked lower than high
     // buy high sell price is ranked lower than low sell later time is ranked
     // lower than earlier time
-    bool operator<(const Order &rhs) {
+
+    bool operator<(const Order& rhs) {
       // silly equal
       if (std::abs(price - rhs.price) < 0.0001) {
         return timestamp > rhs.timestamp;
@@ -79,15 +78,11 @@ namespace common::model {
       }
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const Order &o);
+    friend std::ostream& operator<<(std::ostream& os, const Order& o);
 
-    bool operator==(const Order &rhs) const {
-      return order_id.compare(rhs.order_id) == 0;
-    }
+    bool operator==(const Order& rhs) const { return order_id.compare(rhs.order_id) == 0; }
 
-    bool operator!=(const Order &rhs) const {
-      return !(*this == rhs);
-    }
+    bool operator!=(const Order& rhs) const { return !(*this == rhs); }
   };
 
   typedef std::shared_ptr<Order> OrderPtr;
@@ -95,7 +90,7 @@ namespace common::model {
   // NOTE: Only used if we have a collection container OrderPtr and we wanted
   // ordering based on Order order semantics
   //
-  bool operator<(const OrderPtr &lhs, const OrderPtr &rhs);
+  bool operator<(const OrderPtr& lhs, const OrderPtr& rhs);
 
   // template <class Inspector> bool inspect(Inspector &f, const Order &x) {
   //   return f.object(x).fields(f.field("order_id", x.order_id),

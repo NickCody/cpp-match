@@ -11,17 +11,14 @@
 #include "darkpool/engine/order_provider/order_provider.h"
 
 namespace darkpool {
-
-FilenameStreamOrderProvider::FilenameStreamOrderProvider(std::string filename,
-                                                         int batch_size)
-    : InputStreamOrderProvider(file_input_stream, batch_size) {
+  FilenameStreamOrderProvider::FilenameStreamOrderProvider(std::string filename, int batch_size)
+      : InputStreamOrderProvider(file_input_stream, batch_size) {
     file_input_stream.open(filename, std::ifstream::in);
 
     if (!file_input_stream.is_open()) {
-        throw std::invalid_argument("Failed to open specified file");
+      throw std::invalid_argument("Failed to open specified file");
     }
-}
+  }
 
-FilenameStreamOrderProvider::~FilenameStreamOrderProvider() {}
-
-}  // namespace darkpool
+  FilenameStreamOrderProvider::~FilenameStreamOrderProvider() {}
+} // namespace darkpool

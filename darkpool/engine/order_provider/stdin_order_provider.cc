@@ -2,7 +2,7 @@
  * Nick Codignotto
  *
  * nick.codignotto@gmail.com / twitter: @nickcoding / blog: nickcoding.com
- * 
+ *
  */
 
 #include <sstream>
@@ -10,9 +10,8 @@
 #include "common/model/order_factory.h"
 
 namespace darkpool {
+  StdinOrderProvider::StdinOrderProvider(int batch_size)
+      : InputStreamOrderProvider(std::cin, batch_size) {}
 
-StdinOrderProvider::StdinOrderProvider(int batch_size) : InputStreamOrderProvider(std::cin, batch_size) {}
-
-StdinOrderProvider::~StdinOrderProvider() {}
-
+  StdinOrderProvider::~StdinOrderProvider() {}
 } // namespace darkpool

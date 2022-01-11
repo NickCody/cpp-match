@@ -2,7 +2,7 @@
  * Nick Codignotto
  *
  * nick.codignotto@gmail.com / twitter: @nickcoding / blog: nickcoding.com
- * 
+ *
  */
 
 #pragma once
@@ -17,45 +17,42 @@
 
 namespace common {
 
-	// Comvenient way to time a lambda/code block
-	//
-	// D is std::chrono::milliseconds, microseconds, etc.
-	template <typename T, typename D>
-	class Stopwatch {
-		private:
-			common::Histogram<T>* optional_histogram;
-			std::chrono::time_point<clock_t> start_time;
+  // Comvenient way to time a lambda/code block
+  //
+  // D is std::chrono::milliseconds, microseconds, etc.
 
-		public:
-			Stopwatch(Histogram<T>* histogram = nullptr) : optional_histogram(histogram) {
-			}
+  template <typename T, typename D> class Stopwatch {
+  private:
+    common::Histogram<T>* optional_histogram;
+    std::chrono::time_point<clock_t> start_time;
 
-			double duration(std::function<void(void)> f) {
-				start();
+  public:
+    Stopwatch(Histogram<T>* histogram = nullptr)
+        : optional_histogram(histogram) {}
 
-				f();
+    double duration(std::function<void(void)> f) {
+      start();
 
-				auto d = stop();
+      f();
 
-				if (optional_histogram != nullptr)
-					optional_histogram->record_value(d);
+      auto d = stop();
 
-				return d;
-			}
+      if (optional_histogram != nullptr)
+        optional_histogram->record_value(d);
 
-			void print_duration(const std::string& msg, std::function<void(void)> f) {
-				double t = duration(f);
-				std::cout << msg << t << std::endl;
-			}
+      return d;
+    }
 
-			void start() {
-				start_time = clock_t::now();
-			}
+    void print_duration(const std::string& msg, std::function<void(void)> f) {
+      double t = duration(f);
+      std::cout << msg << t << std::endl;
+    }
 
-			double stop() {
-				std::chrono::time_point<clock_t> stop_time(clock_t::now());
-				return std::chrono::duration_cast<D>(stop_time - start_time).count();
-			}
-	};
-	
+    void start() { start_time = clock_t::now(); }
+
+    double stop() {
+      std::chrono::time_point<clock_t> stop_time(clock_t::now());
+      return std::chrono::duration_cast<D>(stop_time - start_time).count();
+    }
+  };
 } // namespace common
