@@ -3,13 +3,24 @@
 
 #include <memory>
 
+using namespace std;
+
+struct A {
+  virtual void init() {
+    fmt::printf("%s::init()\n", "A");
+  }
+};
+
+struct B : public A {
+  virtual void init() {
+    fmt::printf("%s::init()\n", "B");
+  }
+};
+
 int main(int /*argc*/, char** /*argv*/) {
 
-  std::unique_ptr<int> pint = std::make_unique<int>();
-  std::shared_ptr<int> spint = std::move(pint);
-  *spint = 10;
-
-  fmt::printf("Value is %d\n", *spint);
+  unique_ptr<A> a = make_unique<B>();
+  a->init();
 
   return 0;
 }

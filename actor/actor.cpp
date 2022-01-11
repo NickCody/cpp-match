@@ -11,25 +11,25 @@ using namespace caf;
 behavior mirror(event_based_actor* self) {
   // return the (initial) actor behavior
   return {
-    // a handler for messages containing a single string
-    // that replies with a string
-    [=](const std::string& what) -> std::string {
-      // prints "Hello World!" via aout (thread-safe cout wrapper)
-      aout(self) << what << std::endl;
-      // reply "!dlroW olleH"
-      return std::string{what.rbegin(), what.rend()};
-    },
+      // a handler for messages containing a single string
+      // that replies with a string
+      [=](const std::string& what) -> std::string {
+        // prints "Hello World!" via aout (thread-safe cout wrapper)
+        aout(self) << what << std::endl;
+        // reply "!dlroW olleH"
+        return std::string{what.rbegin(), what.rend()};
+      },
   };
 }
 
 void hello_world(event_based_actor* self, const actor& buddy) {
   // send "Hello World!" to our buddy ...
   self->request(buddy, std::chrono::seconds(10), "Hello World!")
-    .then(
-      // ... wait up to 10s for a response ...
-      [=](const std::string& what) {
-        // ... and print it
-        aout(self) << what << std::endl;
+      .then(
+          // ... wait up to 10s for a response ...
+          [=](const std::string& what) {
+    // ... and print it
+    aout(self) << what << std::endl;
       });
 }
 

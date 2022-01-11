@@ -12,13 +12,13 @@
 using namespace caf;
 using namespace common::model;
 
-behavior process_order(event_based_actor *self) {
-  return {[=](const std::string &order) {
+behavior process_order(event_based_actor* self) {
+  return {[=](const std::string& order) {
     aout(self) << "Received order: " << order << std::endl;
   }};
 }
 
-void read_stdin(event_based_actor *self, const actor &po) {
+void read_stdin(event_based_actor* self, const actor& po) {
   auto one_sec = std::chrono::seconds(1);
   for (std::string line; std::getline(std::cin, line);) {
     Order order = OrderFactory::from_string(line);
@@ -26,7 +26,7 @@ void read_stdin(event_based_actor *self, const actor &po) {
   }
 }
 
-void caf_main(actor_system &sys) {
+void caf_main(actor_system& sys) {
   auto po = sys.spawn(process_order);
   sys.spawn(read_stdin, po);
   std::cout << sys.has_middleman() << std::endl;
