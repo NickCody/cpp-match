@@ -14,11 +14,9 @@ struct Foo {
   Foo(const Foo& foo) { bar = foo.bar }
 
   template <class Inspector> bool inspect(Inspector& f, Foo& x) { return f.object(x).fields(f.field("bar", x.bar)); };
-}
+};
 
-behavior
-mirror(event_based_actor* self) {
-
+behavior mirror(event_based_actor* self) {
   return {
     [=](const Foo& foo) { std::cout << foo.bar << std::endl; },
   };
