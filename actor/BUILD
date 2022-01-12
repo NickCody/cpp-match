@@ -13,8 +13,6 @@ cc_binary(
     ],
     deps = [
         "@caf//:main",
-        "@fmt//:main",
-        "@ncurses//:main",
     ],
 )
 
@@ -28,7 +26,20 @@ cc_binary(
     ],
     deps = [
         "@caf//:main",
+    ],
+)
+
+cc_binary(
+    name = "class-perf",
+    srcs = ["class-perf.cpp"],
+    copts = global_copts(),
+    linkopts = [
+        "-pthread",
+        "-lstdc++fs",
+    ],
+    deps = [
+        "//common:lib",
+        "@caf//:main",
         "@fmt//:main",
-        "@ncurses//:main",
     ],
 )

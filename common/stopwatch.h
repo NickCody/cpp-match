@@ -10,6 +10,7 @@
 #include <chrono>
 #include <thread>
 #include <iostream>
+#include <iomanip>
 #include <functional>
 
 #include "common/common.h"
@@ -28,7 +29,8 @@ namespace common {
 
   public:
     Stopwatch(Histogram<T>* histogram = nullptr)
-        : optional_histogram(histogram) {}
+        : optional_histogram(histogram) {
+    }
 
     double duration(std::function<void(void)> f) {
       start();
@@ -45,10 +47,12 @@ namespace common {
 
     void print_duration(const std::string& msg, std::function<void(void)> f) {
       double t = duration(f);
-      std::cout << msg << t << std::endl;
+      std::cout << msg << std::fixed << std::setprecision(0) << std::setw(12) << t << std::endl;
     }
 
-    void start() { start_time = clock_t::now(); }
+    void start() {
+      start_time = clock_t::now();
+    }
 
     double stop() {
       std::chrono::time_point<clock_t> stop_time(clock_t::now());

@@ -27,7 +27,8 @@ namespace common::model {
     long remaining_quantity;
     double price;
 
-    Order() {}
+    Order() {
+    }
 
     Order(const Order& order) {
       timestamp = order.timestamp;
@@ -89,9 +90,21 @@ namespace common::model {
 
     friend std::ostream& operator<<(std::ostream& os, const Order& o);
 
-    bool operator==(const Order& rhs) const { return order_id.compare(rhs.order_id) == 0; }
+    bool operator==(const Order& rhs) const {
+      return order_id.compare(rhs.order_id) == 0;
+    }
 
-    bool operator!=(const Order& rhs) const { return !(*this == rhs); }
+    bool operator!=(const Order& rhs) const {
+      return !(*this == rhs);
+    }
+
+    template <class Inspector> bool inspect(Inspector& f, Order& x) {
+      return f.object(x).fields(f.field("order_id", x.order_id),
+                                f.field("side", x.side),
+                                f.field("instrument", x.instrument),
+                                f.field("remaining_quantity", x.remaining_quantity),
+                                f.field("price", x.price));
+    }
   };
 
   typedef std::shared_ptr<Order> OrderPtr;
@@ -101,13 +114,6 @@ namespace common::model {
   //
   bool operator<(const OrderPtr& lhs, const OrderPtr& rhs);
 
-  template <class Inspector> bool inspect(Inspector& f, Order& x) {
-    return f.object(x).fields(f.field("order_id", x.order_id),
-                              f.field("side", x.side),
-                              f.field("instrument", x.instrument),
-                              f.field("remaining_quantity", x.remaining_quantity),
-                              f.field("price", x.price));
-  }
 } // namespace common::model
 
 // namespace caf {
