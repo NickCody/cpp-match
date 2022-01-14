@@ -10,7 +10,8 @@ def global_copts(unwanted_options = []):
         "-Woverloaded-virtual",
         "-Wvla",
         "-pedantic",
-        "-O3"
+        "-Og",
+        "-g",
     ]
     unwanted = {x: x for x in unwanted_options}
     return [opt for opt in opts if unwanted.get(opt) == None]

@@ -2,6 +2,16 @@
 # computes a value at runtime if the configuration does not provide a value. For
 # example, "caf.scheduler.max-threads" has no hard-coded default and instead
 # adjusts to the number of cores available.
+
+
+class-perf {
+  iterations = 3000
+  par-threads = 20
+  work-per-iteration = [0us, 100us, 10ms]
+  actor-pool-size = 100000
+  work-send-delay = 1us
+}
+
 caf {
   # Parameters selecting a default scheduler.
   scheduler {
@@ -10,7 +20,7 @@ caf {
     # Maximum number of messages actors can consume in single run (int64 max).
     max-throughput = 9223372036854775807
     # # Maximum number of threads for the scheduler. No hardcoded default.
-    max-threads = 100
+    max-threads = 20
   }
   # Prameters for the work stealing scheduler. Only takes effect if
   # caf.scheduler.policy is set to "stealing".
