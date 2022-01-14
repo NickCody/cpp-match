@@ -45,9 +45,14 @@ namespace common {
       return d;
     }
 
+    void print_duration(const std::string& msg, int width, std::function<void(void)> f) {
+      double t = duration(f);
+      std::cout << msg << std::setw(width) << common::numberFormatWithCommas<>(t, 0) << std::endl;
+    }
+
     void print_duration(const std::string& msg, std::function<void(void)> f) {
       double t = duration(f);
-      std::cout << msg << std::fixed << std::setprecision(0) << std::setw(12) << t << std::endl;
+      std::cout << msg << std::setw(12) << common::numberFormatWithCommas<>(t, 0) << std::endl;
     }
 
     void start() {
