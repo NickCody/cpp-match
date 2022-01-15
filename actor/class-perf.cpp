@@ -13,15 +13,15 @@
 
 #include "common/stopwatch.h"
 
-auto BUSY_SPIN_MILLIS = std::chrono::microseconds(0);
+auto g_busy_spin_millis = std::chrono::microseconds(0);
 constexpr auto RESULT_WIDTH = 14;
 constexpr auto NANOS_PER_MICRO = 1000;
 
-std::atomic<uint64_t> g_actor_work_count = 0;
-std::atomic<uint64_t> g_actor_x_work_count = 0;
-std::atomic<uint64_t> g_actor_pool_work_count = 0;
+uint64_t g_actor_work_count = 0;
+uint64_t g_actor_x_work_count = 0;
+uint64_t g_actor_pool_work_count = 0;
 uint64_t g_par_work_count = 0;
-std::atomic<uint64_t> g_func_work_count = 0;
+uint64_t g_func_work_count = 0;
 
 uint64_t g_actor_send_count = 0;
 uint64_t g_actor_x_send_count = 0;
@@ -32,15 +32,38 @@ uint64_t g_func_send_count = 0;
 using namespace caf;
 using namespace std;
 
+mutex g_mutex;
+queue<uint64_t> g_queue;
+queue<uint64_t> g_count_queue;
+atomic<bool> g_par_continue;
+
+struct WorkConfig {
+  size_t par_threads;
+  size_t actor_threads;
+  size_t actor_pool_size;
+  size_t iterations;
+  std::chrono::microseconds work_send_delay;
+  std::list<caf::timespan> work_per_iteration;
+  volatile bool random_work;
+};
+
+WorkConfig g_work_config;
+
 // =-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // busy spin
 
 void busy_spin(std::chrono::microseconds spin_time) {
   const auto start = std::chrono::system_clock::now();
 
+  std::chrono::microseconds actual_spin_time;
+  if (g_work_config.random_work) {
+    actual_spin_time = std::chrono::microseconds(rand() % (int)spin_time.count());
+  } else {
+    actual_spin_time = spin_time;
+  }
   while (true) {
     const auto now = std::chrono::system_clock::now();
-    if ((now - start) >= spin_time)
+    if ((now - start) >= actual_spin_time)
       break;
   }
 }
@@ -49,59 +72,80 @@ void busy_spin(std::chrono::microseconds spin_time) {
 // Actor setup
 //
 struct Foo;
+struct Bar;
 
 CAF_BEGIN_TYPE_ID_BLOCK(custom_types_1, first_custom_type_id)
 CAF_ADD_TYPE_ID(custom_types_1, (Foo))
+CAF_ADD_TYPE_ID(custom_types_1, (Bar))
 CAF_END_TYPE_ID_BLOCK(custom_types_1)
 
 struct Foo {
   int bar;
 };
 
+struct Bar {
+  int foo;
+};
+
 template <class Inspector> bool inspect(Inspector& f, Foo& x) {
   return f.object(x).fields(f.field("bar", x.bar));
 }
 
-behavior posh(event_based_actor* /*self*/) {
+template <class Inspector> bool inspect(Inspector& f, Bar& x) {
+  return f.object(x).fields(f.field("foo", x.foo));
+}
+
+behavior posh(event_based_actor* self, const actor& count_actor) {
   return {
-    [&](const Foo& /*val*/) {
-      g_actor_work_count++;
-      busy_spin(BUSY_SPIN_MILLIS);
+    [=](const Foo& val) {
+      self->send(count_actor, val);
+      busy_spin(g_busy_spin_millis);
     },
   };
 }
 
-behavior posh_x(event_based_actor* /*self*/) {
+behavior posh_x(event_based_actor* self, const actor& count_actor) {
   return {
-    [&](const Foo& /*val*/) {
-      g_actor_x_work_count++;
-      busy_spin(BUSY_SPIN_MILLIS);
+    [=](const Foo& val) {
+      self->send(count_actor, val);
+      busy_spin(g_busy_spin_millis);
     },
   };
 }
 
-behavior posh_pool(event_based_actor* /*self*/) {
+behavior posh_pool(event_based_actor* self, const actor& count_actor) {
   return {
-    [&](const Foo& /*val*/) {
-      g_actor_pool_work_count++;
-      busy_spin(BUSY_SPIN_MILLIS);
+    [=](const Foo& val) {
+      self->send(count_actor, val);
+      busy_spin(g_busy_spin_millis);
     },
   };
 }
 
-mutex g_mutex;
-queue<uint64_t> g_queue;
-atomic<bool> par_continue = true;
+behavior posh_counter(event_based_actor* /*self*/) {
+  auto count = std::make_shared<uint64_t>(0);
+  return {
+    [=](const Foo& /*val*/) { (*count)++; },
+    [=](const Bar& /*val*/) -> uint64_t { return *count; },
+  };
+}
 
-void par_func(int max_to_read) {
-  while (par_continue.load()) {
-    std::lock_guard<std::mutex> guard(g_mutex);
+void par_func(int max_to_read, uint64_t id) {
+  while (true) {
     int num_read = 0;
-    while (!g_queue.empty() && (max_to_read == -1 || max_to_read < num_read)) {
-      g_queue.pop();
-      g_par_work_count++;
-      num_read++;
-      busy_spin(BUSY_SPIN_MILLIS);
+    {
+      std::lock_guard<std::mutex> guard(g_mutex);
+      if (!g_par_continue && g_queue.empty())
+        return;
+
+      while (!g_queue.empty() && (max_to_read == -1 || num_read < max_to_read)) {
+        g_count_queue.push(id);
+        g_queue.pop();
+        num_read++;
+      }
+    }
+    for (int i = 0; i < num_read; i++) {
+      busy_spin(g_busy_spin_millis);
     }
   }
 }
@@ -114,10 +158,13 @@ void time_actor(actor_system& sys, uint64_t iterations, std::chrono::microsecond
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_actor_send_count = 0;
   g_actor_work_count = 0;
+  while (!g_count_queue.empty())
+    g_count_queue.pop();
 
-  watch.print_duration(fmt::format("{:>25}: {} iterations (micros): ", "single actor", iterations), RESULT_WIDTH, [&] {
+  watch.print_duration(fmt::format("{:>25}: (micros): ", "single actor"), RESULT_WIDTH, [&] {
     Foo f{ 1 };
-    auto posh_actor = sys.spawn(posh);
+    auto counter = sys.spawn(posh_counter);
+    auto posh_actor = sys.spawn(posh, counter);
     scoped_actor self{ sys };
 
     for (uint64_t i = 0; i < iterations; i++) {
@@ -128,6 +175,8 @@ void time_actor(actor_system& sys, uint64_t iterations, std::chrono::microsecond
     self->send(posh_actor, exit_msg{ self.address(), exit_reason::kill });
     self->await_all_other_actors_done();
   });
+
+  g_actor_work_count = g_count_queue.size();
 }
 
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
@@ -139,12 +188,16 @@ void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseco
   g_actor_x_send_count = 0;
   g_actor_x_work_count = 0;
   scoped_actor self{ sys };
+  auto counter = sys.spawn(posh_counter);
 
-  watch.print_duration(fmt::format("{:>25}: {} iterations (micros): ", "actor per work item", iterations), RESULT_WIDTH, [&] {
+  while (!g_count_queue.empty())
+    g_count_queue.pop();
+
+  watch.print_duration(fmt::format("{:>25}: (micros): ", "actor per work item"), RESULT_WIDTH, [&] {
     Foo f{ 1 };
 
     for (uint64_t i = 0; i < iterations; i++) {
-      auto posh_actor = sys.spawn(posh);
+      auto posh_actor = sys.spawn(posh_x, counter);
       self->send(posh_actor, f);
       g_actor_x_send_count++;
       self->send(posh_actor, exit_msg{ self.address(), exit_reason::kill });
@@ -152,6 +205,8 @@ void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseco
     }
     self->await_all_other_actors_done();
   });
+
+  g_actor_work_count = g_count_queue.size();
 }
 
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
@@ -160,25 +215,33 @@ void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseco
 
 void time_actor_pool(actor_system& sys, uint64_t iterations, size_t pool_size, std::chrono::microseconds work_send_delay) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
-  scoped_actor self{ sys };
-  scoped_execution_unit ctx{ &sys };
   g_actor_pool_send_count = 0;
   g_actor_pool_work_count = 0;
 
-  auto pool = actor_pool::make(
-      &ctx, pool_size, [&] { return sys.spawn(posh); }, actor_pool::round_robin());
-
-  watch.print_duration(fmt::format("{:>25}: {} iterations (micros): ", "actor pool", iterations), RESULT_WIDTH, [&] {
+  watch.print_duration(fmt::format("{:>25}: (micros): ", "actor pool"), RESULT_WIDTH, [&] {
     Foo f{ 1 };
+    scoped_actor self{ sys };
+    auto counter = sys.spawn(posh_counter);
+    scoped_execution_unit ctx{ &sys };
+    auto pool = actor_pool::make(
+        &ctx, pool_size, [&] { return sys.spawn(posh_pool, counter); }, actor_pool::round_robin());
 
     for (uint64_t i = 0; i < iterations; i++) {
       g_actor_pool_send_count++;
       self->send(pool, f);
       std::this_thread::sleep_for(work_send_delay);
     }
+
+    while (g_actor_pool_work_count < g_actor_pool_send_count) {
+      self->request(counter, infinite, Bar{ 1 })
+          .receive([=](uint64_t c) { g_actor_pool_work_count = c; }, [&](error& err) { fmt::print("Error: {}\n", to_string(err)); });
+    }
+
+    self->send_exit(counter, exit_reason::user_shutdown);
     self->send_exit(pool, exit_reason::user_shutdown);
     self->await_all_other_actors_done();
   });
+  sys.await_all_actors_done();
 }
 
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
@@ -190,106 +253,136 @@ void time_func(uint64_t iterations, std::chrono::microseconds work_send_delay) {
   g_func_send_count = 0;
   g_func_work_count = 0;
 
+  while (!g_count_queue.empty())
+    g_count_queue.pop();
+
   auto func = [&](int inc) {
     g_func_send_count += inc;
-    busy_spin(BUSY_SPIN_MILLIS);
+    busy_spin(g_busy_spin_millis);
   };
 
-  watch.print_duration(fmt::format("{:>25}: {} iterations (micros): ", "raw function call", iterations), RESULT_WIDTH, [&] {
+  watch.print_duration(fmt::format("{:>25}: (micros): ", "raw function call"), RESULT_WIDTH, [&] {
     for (uint64_t i = 0; i < iterations; i++) {
       func(1);
       std::this_thread::sleep_for(work_send_delay);
     }
   });
+
+  g_actor_work_count = g_count_queue.size();
 }
 
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 // time_par_func
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_par_func(uint64_t iterations, uint64_t num_threads, std::chrono::microseconds work_send_delay) {
+void time_par_func(uint64_t iterations, uint64_t num_threads) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
-  par_continue.store(true);
+  g_par_continue.store(true);
   int num_to_read = num_threads == 1 ? -1 : 1;
   g_par_send_count = 0;
   g_par_work_count = 0;
 
-  std::vector<std::thread> thread_par_func;
+  while (!g_queue.empty())
+    g_queue.pop();
 
-  for (uint64_t i = 0; i < num_threads; i++) {
-    thread_par_func.push_back(std::thread(par_func, num_to_read));
-  }
+  while (!g_count_queue.empty())
+    g_count_queue.pop();
 
-  watch.print_duration(fmt::format("{:>25}: {} iterations (micros): ", "parallel thread", iterations), RESULT_WIDTH, [&] {
+  watch.print_duration(fmt::format("{:>25}: (micros): ", "parallel thread"), RESULT_WIDTH, [&] {
     for (uint64_t i = 0; i < iterations; i++) {
-      {
-        std::lock_guard<std::mutex> guard(g_mutex);
-        g_queue.push(1);
-      }
+      g_queue.push(g_par_send_count);
       g_par_send_count++;
-      std::this_thread::sleep_for(work_send_delay);
+      std::this_thread::sleep_for(g_work_config.work_send_delay);
     }
-    par_continue.store(false);
+    std::vector<std::thread> thread_par_func;
+    for (uint64_t i = 0; i < num_threads; i++) {
+      thread_par_func.push_back(std::thread(par_func, num_to_read, i));
+    }
+    g_par_continue.store(false);
     for (std::thread& thread : thread_par_func) {
       if (thread.joinable())
         thread.join();
     }
   });
+
+  g_par_work_count = g_count_queue.size();
+}
+
+void print_queue_analysis(uint64_t num_threads) {
+  std::vector<uint64_t> queue_analysis;
+  queue_analysis.reserve(num_threads);
+  for (uint64_t i = 0; i < num_threads; i++) {
+    queue_analysis[i] = 0;
+  }
+  while (!g_count_queue.empty()) {
+    queue_analysis[g_count_queue.front()]++;
+    g_count_queue.pop();
+  }
+
+  for (uint64_t i = 0; i < num_threads; i++) {
+    fmt::print("queue_analysis[{}] = {}\n", i, queue_analysis[i]);
+  }
 }
 
 void print_counts() {
-  // fmt::print(" {:>30} = {:>15}\n", "g_func_work_count", common::numberFormatWithCommas(g_func_work_count.load()));
+  // fmt::print(" {:>30} = {:>15}\n", "g_func_work_count", common::numberFormatWithCommas(g_func_work_count));
   // fmt::print(" {:>30} = {:>15}\n", "g_func_send_count", common::numberFormatWithCommas(g_func_send_count));
 
   fmt::print(" {:>30} = {:>15}\n", "g_par_work_count", common::numberFormatWithCommas(g_par_work_count));
   fmt::print(" {:>30} = {:>15}\n", "g_par_send_count", common::numberFormatWithCommas(g_par_send_count));
 
-  // fmt::print(" {:>30} = {:15}\n", "g_actor_work_count", common::numberFormatWithCommas(g_actor_work_count.load()));
+  // fmt::print(" {:>30} = {:15}\n", "g_actor_work_count", common::numberFormatWithCommas(g_actor_work_count));
   // fmt::print(" {:>30} = {:>15}\n", "g_actor_send_count", common::numberFormatWithCommas(g_actor_send_count));
 
-  fmt::print(" {:>30} = {:>15}\n", "g_actor_x_work_count", common::numberFormatWithCommas(g_actor_x_work_count.load()));
-  fmt::print(" {:>30} = {:>15}\n", "g_actor_x_send_count", common::numberFormatWithCommas(g_actor_x_send_count));
+  // fmt::print(" {:>30} = {:>15}\n", "g_actor_x_work_count", common::numberFormatWithCommas(g_actor_x_work_count));
+  // fmt::print(" {:>30} = {:>15}\n", "g_actor_x_send_count", common::numberFormatWithCommas(g_actor_x_send_count));
 
-  fmt::print(" {:>30} = {:>15}\n", "g_actor_pool_work_count", common::numberFormatWithCommas(g_actor_pool_work_count.load()));
+  fmt::print(" {:>30} = {:>15}\n", "g_actor_pool_work_count", common::numberFormatWithCommas(g_actor_pool_work_count));
   fmt::print(" {:>30} = {:>15}\n", "g_actor_pool_send_count", common::numberFormatWithCommas(g_actor_pool_send_count));
 }
 
-void harness(actor_system& sys, std::chrono::microseconds busy_spin_micros) {
-  BUSY_SPIN_MILLIS = busy_spin_micros;
-  int par_threads = get_or(sys.config(), "class-perf.par-threads", 1);
-  int actor_threads = get_or(sys.config(), "caf.scheduler.max-threads", 1);
-  size_t actor_pool_size = get_or(sys.config(), "class-perf.actor-pool-size", 1);
-  uint64_t iterations = get_or(sys.config(), "class-perf.iterations", 100);
-  std::chrono::microseconds work_send_delay =
-      std::chrono::duration_cast<std::chrono::microseconds>(get_or(sys.config(), "class-perf.work-send-delay", caf::timespan(NANOS_PER_MICRO)));
+void harness(actor_system& sys) {
 
-  fmt::print("Using {} par_threads, {} actor_threads, {} actor_pool_size, {} itetarions, with {} microsecond work per "
-             "iteration:\n\n",
-             par_threads,
-             actor_threads,
-             common::numberFormatWithCommas(actor_pool_size),
-             common::numberFormatWithCommas(iterations),
-             common::numberFormatWithCommas(BUSY_SPIN_MILLIS.count()));
+  fmt::print("Using {} par_threads, {} actor_threads, {} actor_pool_size, {} iterations, with {} microsecond work per "
+             "iteration, random_work={}:\n\n",
+             g_work_config.par_threads,
+             g_work_config.actor_threads,
+             common::numberFormatWithCommas(g_work_config.actor_pool_size),
+             common::numberFormatWithCommas(g_work_config.iterations),
+             common::numberFormatWithCommas(g_busy_spin_millis.count()),
+             g_work_config.random_work);
   sys.clock();
 
-  // time_func(iterations,work_send_delay);
-  time_par_func(iterations, par_threads, work_send_delay);
-  // time_actor(sys, iterations,work_send_delay);
-  time_actor_x(sys, iterations, work_send_delay);
-  time_actor_pool(sys, iterations, actor_pool_size, work_send_delay);
+  // time_func(g_work_config.iterations,g_work_config.work_send_delay);
+  time_par_func(g_work_config.iterations, g_work_config.par_threads, g_work_config.work_send_delay);
+  // time_actor(sys, g_work_config.iterations,g_work_config.work_send_delay);
+  // time_actor_x(sys, g_work_config.iterations, g_work_config.work_send_delay);
+  time_actor_pool(sys, g_work_config.iterations, g_work_config.actor_pool_size, g_work_config.work_send_delay);
 
-  print_counts();
+  // print_counts();
 
   fmt::print("\n");
 }
 
 void caf_main(actor_system& sys) {
   std::list<caf::timespan> default_work_per_iteration = { caf::timespan(NANOS_PER_MICRO * 10) };
+  g_work_config = {
+    get_or(sys.config(), "class-perf.par-threads", (size_t)1),
+    get_or(sys.config(), "caf.scheduler.max-threads", (size_t)1),
+    get_or(sys.config(), "class-perf.actor-pool-size", (size_t)1),
+    get_or(sys.config(), "class-perf.iterations", (size_t)100),
+    std::chrono::duration_cast<std::chrono::microseconds>(get_or(sys.config(), "class-perf.work-send-delay", caf::timespan(NANOS_PER_MICRO))),
+    get_or(sys.config(), "class-perf.work-per-iteration", default_work_per_iteration),
+    get_or(sys.config(), "class-perf.random-work", false),
+  };
 
-  std::list<caf::timespan> work_per_iteration = get_or(sys.config(), "class-perf.work-per-iteration", default_work_per_iteration);
-
-  for (auto work : work_per_iteration) {
-    harness(sys, std::chrono::duration_cast<std::chrono::microseconds>(work));
+  for (auto work : g_work_config.work_per_iteration) {
+    g_busy_spin_millis = std::chrono::duration_cast<std::chrono::microseconds>(work);
+    // for (auto n : std::list<size_t>{ 1, 2, 4, 8 }) {
+    //   config.par_threads = n;
+    //   harness(sys, config);
+    // }
+    harness(sys);
   }
 }
 

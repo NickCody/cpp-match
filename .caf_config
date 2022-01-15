@@ -5,11 +5,12 @@
 
 
 class-perf {
-  iterations = 3000
-  par-threads = 20
-  work-per-iteration = [0us, 100us, 10ms]
-  actor-pool-size = 100000
-  work-send-delay = 1us
+  iterations = 100000
+  par-threads = 24
+  work-per-iteration = [10us, 100us, 1ms, 5ms]
+  actor-pool-size = 250
+  work-send-delay = 0us
+  random-work = true
 }
 
 caf {
@@ -20,7 +21,7 @@ caf {
     # Maximum number of messages actors can consume in single run (int64 max).
     max-throughput = 9223372036854775807
     # # Maximum number of threads for the scheduler. No hardcoded default.
-    max-threads = 20
+    max-threads = 24
   }
   # Prameters for the work stealing scheduler. Only takes effect if
   # caf.scheduler.policy is set to "stealing".
@@ -38,7 +39,7 @@ caf {
     # Frequency of steal attempts during relaxed polling.
     relaxed-steal-interval = 1
     # Sleep interval between poll attempts.
-    relaxed-sleep-duration = 10ms
+    relaxed-sleep-duration = 1ms
   }
   # Parameters for the I/O module.
   middleman {

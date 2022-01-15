@@ -73,7 +73,7 @@ Cpp11BracedListStyle: false
 PackConstructorInitializers: Never
 # BasedOnStyle:    ''
 # ConstructorInitializerAllOnOneLineOrOnePerLine: false
-# AllowAllConstructorInitializersOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: false
 # FixNamespaceComments: true
 # ForEachMacros:
 #   - foreach
