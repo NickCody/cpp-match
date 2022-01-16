@@ -154,27 +154,29 @@ void par_func(int max_to_read, uint64_t id) {
 // time_actor
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_actor(actor_system& sys, uint64_t iterations, std::chrono::microseconds work_send_delay) {
+void time_actor(actor_system& sys, const WorkConfig& work_config) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_actor_send_count = 0;
   g_actor_work_count = 0;
   while (!g_count_queue.empty())
     g_count_queue.pop();
 
-  watch.print_duration(fmt::format("{:>25}: (micros): ", "single actor"), RESULT_WIDTH, [&] {
+  double micros = watch.duration([&] {
     Foo f{ 1 };
     auto counter = sys.spawn(posh_counter);
     auto posh_actor = sys.spawn(posh, counter);
     scoped_actor self{ sys };
 
-    for (uint64_t i = 0; i < iterations; i++) {
+    for (uint64_t i = 0; i < work_config.iterations; i++) {
       self->send(posh_actor, f);
       g_actor_send_count++;
-      std::this_thread::sleep_for(work_send_delay);
+      std::this_thread::sleep_for(work_config.work_send_delay);
     }
     self->send(posh_actor, exit_msg{ self.address(), exit_reason::kill });
     self->await_all_other_actors_done();
   });
+
+  fmt::print("{:>25}: {:>15} (micros)\n", "single actor", common::numberFormatWithCommas(micros));
 
   g_actor_work_count = g_count_queue.size();
 }
@@ -183,7 +185,7 @@ void time_actor(actor_system& sys, uint64_t iterations, std::chrono::microsecond
 // time_actor_x
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseconds work_send_delay) {
+void time_actor_x(actor_system& sys, const WorkConfig& work_config) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_actor_x_send_count = 0;
   g_actor_x_work_count = 0;
@@ -193,18 +195,20 @@ void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseco
   while (!g_count_queue.empty())
     g_count_queue.pop();
 
-  watch.print_duration(fmt::format("{:>25}: (micros): ", "actor per work item"), RESULT_WIDTH, [&] {
+  double micros = watch.duration([&] {
     Foo f{ 1 };
 
-    for (uint64_t i = 0; i < iterations; i++) {
+    for (uint64_t i = 0; i < work_config.iterations; i++) {
       auto posh_actor = sys.spawn(posh_x, counter);
       self->send(posh_actor, f);
       g_actor_x_send_count++;
       self->send(posh_actor, exit_msg{ self.address(), exit_reason::kill });
-      std::this_thread::sleep_for(work_send_delay);
+      std::this_thread::sleep_for(work_config.work_send_delay);
     }
     self->await_all_other_actors_done();
   });
+
+  fmt::print("{:>25}: {:>15} (micros)\n", "actor per work item", common::numberFormatWithCommas(micros));
 
   g_actor_work_count = g_count_queue.size();
 }
@@ -213,23 +217,23 @@ void time_actor_x(actor_system& sys, uint64_t iterations, std::chrono::microseco
 // time_actor_x
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_actor_pool(actor_system& sys, uint64_t iterations, size_t pool_size, std::chrono::microseconds work_send_delay) {
+void time_actor_pool(actor_system& sys, const WorkConfig& work_config) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_actor_pool_send_count = 0;
   g_actor_pool_work_count = 0;
 
-  watch.print_duration(fmt::format("{:>25}: (micros): ", "actor pool"), RESULT_WIDTH, [&] {
+  double micros = watch.duration([&] {
     Foo f{ 1 };
     scoped_actor self{ sys };
     auto counter = sys.spawn(posh_counter);
     scoped_execution_unit ctx{ &sys };
     auto pool = actor_pool::make(
-        &ctx, pool_size, [&] { return sys.spawn(posh_pool, counter); }, actor_pool::round_robin());
+        &ctx, work_config.actor_pool_size, [&] { return sys.spawn(posh_pool, counter); }, actor_pool::round_robin());
 
-    for (uint64_t i = 0; i < iterations; i++) {
+    for (uint64_t i = 0; i < work_config.iterations; i++) {
       g_actor_pool_send_count++;
       self->send(pool, f);
-      std::this_thread::sleep_for(work_send_delay);
+      std::this_thread::sleep_for(work_config.work_send_delay);
     }
 
     while (g_actor_pool_work_count < g_actor_pool_send_count) {
@@ -241,6 +245,9 @@ void time_actor_pool(actor_system& sys, uint64_t iterations, size_t pool_size, s
     self->send_exit(pool, exit_reason::user_shutdown);
     self->await_all_other_actors_done();
   });
+
+  fmt::print("{:>25}: {:>15} (micros)\n", "actor pool", common::numberFormatWithCommas(micros));
+
   sys.await_all_actors_done();
 }
 
@@ -248,7 +255,7 @@ void time_actor_pool(actor_system& sys, uint64_t iterations, size_t pool_size, s
 // time_func
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_func(uint64_t iterations, std::chrono::microseconds work_send_delay) {
+void time_func(actor_system& /*sys*/, const WorkConfig& work_config) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_func_send_count = 0;
   g_func_work_count = 0;
@@ -261,12 +268,14 @@ void time_func(uint64_t iterations, std::chrono::microseconds work_send_delay) {
     busy_spin(g_busy_spin_millis);
   };
 
-  watch.print_duration(fmt::format("{:>25}: (micros): ", "raw function call"), RESULT_WIDTH, [&] {
-    for (uint64_t i = 0; i < iterations; i++) {
+  double micros = watch.duration([&] {
+    for (uint64_t i = 0; i < work_config.iterations; i++) {
       func(1);
-      std::this_thread::sleep_for(work_send_delay);
+      std::this_thread::sleep_for(work_config.work_send_delay);
     }
   });
+
+  fmt::print("{:>25}: {:>15} (micros)\n", "raw function", common::numberFormatWithCommas(micros));
 
   g_actor_work_count = g_count_queue.size();
 }
@@ -275,10 +284,10 @@ void time_func(uint64_t iterations, std::chrono::microseconds work_send_delay) {
 // time_par_func
 // -==------=-==-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-===-=-=-==
 
-void time_par_func(uint64_t iterations, uint64_t num_threads) {
+void time_par_func(actor_system& /*sys*/, const WorkConfig& work_config) {
   common::Stopwatch<uint64_t, std::chrono::microseconds> watch;
   g_par_continue.store(true);
-  int num_to_read = num_threads == 1 ? -1 : 1;
+  int num_to_read = work_config.par_threads == 1 ? -1 : 1;
   g_par_send_count = 0;
   g_par_work_count = 0;
 
@@ -288,22 +297,30 @@ void time_par_func(uint64_t iterations, uint64_t num_threads) {
   while (!g_count_queue.empty())
     g_count_queue.pop();
 
-  watch.print_duration(fmt::format("{:>25}: (micros): ", "parallel thread"), RESULT_WIDTH, [&] {
-    for (uint64_t i = 0; i < iterations; i++) {
+  double micros = watch.duration([&] {
+    
+    // prime queue
+    for (uint64_t i = 0; i < work_config.iterations; i++) {
       g_queue.push(g_par_send_count);
       g_par_send_count++;
-      std::this_thread::sleep_for(g_work_config.work_send_delay);
+      std::this_thread::sleep_for(work_config.work_send_delay);
     }
+
+    // create threads
     std::vector<std::thread> thread_par_func;
-    for (uint64_t i = 0; i < num_threads; i++) {
+    for (uint64_t i = 0; i < work_config.par_threads; i++) {
       thread_par_func.push_back(std::thread(par_func, num_to_read, i));
     }
+
+    // teardown
     g_par_continue.store(false);
     for (std::thread& thread : thread_par_func) {
       if (thread.joinable())
         thread.join();
     }
   });
+
+  fmt::print("{:>25}: {:>15} (micros)\n", "standard thread pool", common::numberFormatWithCommas(micros));
 
   g_par_work_count = g_count_queue.size();
 }
@@ -353,11 +370,11 @@ void harness(actor_system& sys) {
              g_work_config.random_work);
   sys.clock();
 
-  // time_func(g_work_config.iterations,g_work_config.work_send_delay);
-  time_par_func(g_work_config.iterations, g_work_config.par_threads, g_work_config.work_send_delay);
-  // time_actor(sys, g_work_config.iterations,g_work_config.work_send_delay);
-  // time_actor_x(sys, g_work_config.iterations, g_work_config.work_send_delay);
-  time_actor_pool(sys, g_work_config.iterations, g_work_config.actor_pool_size, g_work_config.work_send_delay);
+  // time_func(sys, g_work_config.iterations,g_work_config.work_send_delay);
+  time_par_func(sys, g_work_config);
+  // time_actor(sys, g_work_config);
+  // time_actor_x(sys, g_work_config);
+  time_actor_pool(sys, g_work_config);
 
   // print_counts();
 

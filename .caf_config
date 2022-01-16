@@ -5,10 +5,10 @@
 
 
 class-perf {
-  iterations = 100000
+  iterations = 10000
   par-threads = 24
   work-per-iteration = [10us, 100us, 1ms, 5ms]
-  actor-pool-size = 250
+  actor-pool-size = 100
   work-send-delay = 0us
   random-work = true
 }
@@ -39,7 +39,7 @@ caf {
     # Frequency of steal attempts during relaxed polling.
     relaxed-steal-interval = 1
     # Sleep interval between poll attempts.
-    relaxed-sleep-duration = 1ms
+    relaxed-sleep-duration = 10ms
   }
   # Parameters for the I/O module.
   middleman {
