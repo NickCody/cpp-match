@@ -5,12 +5,12 @@
 
 
 class-perf {
-  iterations = 10000
-  par-threads = [12, 24]
-  work-per-iteration = [10us, 100us, 1ms, 5ms]
-  actor-pool-size = [50, 100]
+  iterations = 1000
+  par-threads = [24]
+  work-per-iteration = [10us, 100us, 1ms, 5ms, 50ms, 100ms]
+  actor-pool-size = [100,200]
   work-send-delay = 0us
-  random-work = true
+  random-work = false
 }
 
 caf {
@@ -26,20 +26,22 @@ caf {
   # Prameters for the work stealing scheduler. Only takes effect if
   # caf.scheduler.policy is set to "stealing".
   work-stealing {
-    # Number of zero-sleep-interval polling attempts.
-    aggressive-poll-attempts = 100
-    # Frequency of steal attempts during aggressive polling.
+    # Number of zero-sleep-interval polling attempts. (default 100)
+    aggressive-poll-attempts = 0
+    # Frequency of steal attempts during aggressive polling. (default 10)
     aggressive-steal-interval = 10
-    # Number of moderately aggressive polling attempts.
-    moderate-poll-attempts = 500
-    # Frequency of steal attempts during moderate polling.
+
+    # Number of moderately aggressive polling attempts. (default 500)
+    moderate-poll-attempts = 0
+    # Frequency of steal attempts during moderate polling. (default 5)
     moderate-steal-interval = 5
-    # Sleep interval between poll attempts.
+    # Sleep interval between poll attempts. (default 500us)
     moderate-sleep-duration = 50us
-    # Frequency of steal attempts during relaxed polling.
+
+    # Frequency of steal attempts during relaxed polling. (default 1)
     relaxed-steal-interval = 1
-    # Sleep interval between poll attempts.
-    relaxed-sleep-duration = 10ms
+    # Sleep interval between poll attempts. (default 10ms)
+    relaxed-sleep-duration = 1ms
   }
   # Parameters for the I/O module.
   middleman {

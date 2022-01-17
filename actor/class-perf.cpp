@@ -231,12 +231,12 @@ std::chrono::microseconds time_par_func(const WorkConfig& work_config) {
 
 void print_config_row(const WorkConfig& work_config) {
   fmt::print("{},{},{},{},{},{}",
-             work_config.par_threads,
              work_config.actor_threads,
-             work_config.actor_pool_size,
              work_config.iterations,
-             g_busy_spin_millis.count(),
-             g_random_work);
+             g_random_work,
+             work_config.par_threads,
+             work_config.actor_pool_size,
+             g_busy_spin_millis.count());
 }
 
 void harness(actor_system& sys, const WorkConfig& work_config) {
@@ -256,10 +256,10 @@ void caf_main(actor_system& sys) {
       get_or(sys.config(), "class-perf.work-per-iteration", std::list<caf::timespan>({ caf::timespan(NANOS_PER_MICRO * 10) }));
   g_random_work = get_or(sys.config(), "class-perf.random-work", false);
 
-  fmt::print("{},{},{},{},{},{},{},{}\n", "par_threads", "actor_threads", "pool_size", "iterations", "busy_spin", "random", "method", "result");
+  fmt::print("{},{},{},{},{},{},{},{}\n", "actor_threads", "iterations", "random", "par_threads", "pool_size", "busy_spin", "method", "result");
 
-  for (auto actor_pool : actor_pool_size) {
-    for (auto par_threads : par_threads) {
+  for (auto par_threads : par_threads) {
+    for (auto actor_pool : actor_pool_size) {
       for (auto work : work_per_iteration) {
         g_busy_spin_millis = std::chrono::duration_cast<std::chrono::microseconds>(work);
         WorkConfig work_config = {
