@@ -37,6 +37,7 @@ mutex g_mutex;
 queue<uint64_t> g_queue;
 queue<uint64_t> g_count_queue;
 atomic<bool> g_par_continue;
+volatile bool g_random_work;
 
 struct WorkConfig {
   size_t par_threads;
@@ -44,11 +45,7 @@ struct WorkConfig {
   size_t actor_pool_size;
   size_t iterations;
   std::chrono::microseconds work_send_delay;
-  std::list<caf::timespan> work_per_iteration;
-  volatile bool random_work;
 };
-
-WorkConfig g_work_config;
 
 // =-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // busy spin
@@ -57,7 +54,7 @@ void busy_spin(std::chrono::microseconds spin_time) {
   const auto start = std::chrono::system_clock::now();
 
   std::chrono::microseconds actual_spin_time;
-  if (g_work_config.random_work) {
+  if (g_random_work) {
     actual_spin_time = std::chrono::microseconds(rand() % (int)spin_time.count());
   } else {
     actual_spin_time = spin_time;
@@ -239,13 +236,12 @@ void print_config_row(const WorkConfig& work_config) {
              work_config.actor_pool_size,
              work_config.iterations,
              g_busy_spin_millis.count(),
-             work_config.random_work);
+             g_random_work);
 }
 
 void harness(actor_system& sys, const WorkConfig& work_config) {
-
-  std::chrono::microseconds par_time = time_par_func(g_work_config);
-  std::chrono::microseconds actor_time = time_actor_pool(sys, g_work_config);
+  std::chrono::microseconds par_time = time_par_func(work_config);
+  std::chrono::microseconds actor_time = time_actor_pool(sys, work_config);
 
   print_config_row(work_config);
   fmt::print(",{},{}\n", "parallel function", par_time.count());
@@ -254,26 +250,28 @@ void harness(actor_system& sys, const WorkConfig& work_config) {
 }
 
 void caf_main(actor_system& sys) {
-  std::list<caf::timespan> default_work_per_iteration = { caf::timespan(NANOS_PER_MICRO * 10) };
-  g_work_config = {
-    get_or(sys.config(), "class-perf.par-threads", (size_t)1),
-    get_or(sys.config(), "caf.scheduler.max-threads", (size_t)1),
-    get_or(sys.config(), "class-perf.actor-pool-size", (size_t)1),
-    get_or(sys.config(), "class-perf.iterations", (size_t)100),
-    std::chrono::duration_cast<std::chrono::microseconds>(get_or(sys.config(), "class-perf.work-send-delay", caf::timespan(NANOS_PER_MICRO))),
-    get_or(sys.config(), "class-perf.work-per-iteration", default_work_per_iteration),
-    get_or(sys.config(), "class-perf.random-work", false),
-  };
+  list<size_t> par_threads = get_or(sys.config(), "class-perf.par-threads", list<size_t>((size_t)1));
+  list<size_t> actor_pool_size = get_or(sys.config(), "class-perf.actor-pool-size", list<size_t>((size_t)1));
+  list<caf::timespan> work_per_iteration =
+      get_or(sys.config(), "class-perf.work-per-iteration", std::list<caf::timespan>({ caf::timespan(NANOS_PER_MICRO * 10) }));
+  g_random_work = get_or(sys.config(), "class-perf.random-work", false);
 
   fmt::print("{},{},{},{},{},{},{},{}\n", "par_threads", "actor_threads", "pool_size", "iterations", "busy_spin", "random", "method", "result");
 
-  for (auto work : g_work_config.work_per_iteration) {
-    g_busy_spin_millis = std::chrono::duration_cast<std::chrono::microseconds>(work);
-    // for (auto n : std::list<size_t>{ 1, 2, 4, 8 }) {
-    //   config.par_threads = n;
-    //   harness(sys, config);
-    // }
-    harness(sys, g_work_config);
+  for (auto actor_pool : actor_pool_size) {
+    for (auto par_threads : par_threads) {
+      for (auto work : work_per_iteration) {
+        g_busy_spin_millis = std::chrono::duration_cast<std::chrono::microseconds>(work);
+        WorkConfig work_config = {
+          par_threads,
+          get_or(sys.config(), "caf.scheduler.max-threads", (size_t)1),
+          actor_pool,
+          get_or(sys.config(), "class-perf.iterations", (size_t)100),
+          std::chrono::duration_cast<std::chrono::microseconds>(get_or(sys.config(), "class-perf.work-send-delay", caf::timespan(NANOS_PER_MICRO))),
+        };
+        harness(sys, work_config);
+      }
+    }
   }
 }
 

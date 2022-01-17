@@ -6,9 +6,9 @@
 
 class-perf {
   iterations = 10000
-  par-threads = 24
+  par-threads = [12, 24]
   work-per-iteration = [10us, 100us, 1ms, 5ms]
-  actor-pool-size = 100
+  actor-pool-size = [50, 100]
   work-send-delay = 0us
   random-work = true
 }
