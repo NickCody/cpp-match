@@ -28,7 +28,7 @@ behavior order_book(stateful_actor<OrderBook>* self, const string& instrument) {
         self->state.sells.push_back(order);
         std::push_heap(self->state.sells.begin(), self->state.sells.end());
       }
-      aout(self) << order.instrument << " => " << self->state.buys.size() + self->state.sells.size() << endl;
+      // aout(self) << order.instrument << " => " << self->state.buys.size() + self->state.sells.size() << endl;
     },
     [=](dump_book, const string& /*instrument*/) {
       aout(self) << "Book for " << self->state.instrument << " contains " << self->state.buys.size() << " buy(s) and " << self->state.sells.size()
@@ -64,13 +64,18 @@ void caf_main(actor_system& sys) {
 
     for (std::string line; std::getline(std::cin, line);) {
       Order order = OrderFactory::from_string(line);
-      // self->send(router, new_order_v, order);
-      self->request(router, infinite, new_order_v, order)
-          .receive([&](const bool& /*added*/) {}, [&](error& err) { aout(self) << to_string(err) << endl; });
+
+      // this async send can only be used when max_threads=1
+      self->send(router, new_order_v, order);
+
+      // use this when you use multiple threads as it will block and book won't be dumped into all orders sent
+      // this is slow
+      // self->request(router, infinite, new_order_v, order)
+      //     .receive([&](const bool& /*added*/) {}, [&](error& err) { aout(self) << to_string(err) << endl; });
     }
 
-    // self->request(router, infinite, dump_book_v);
-    //  self->send_exit(router, exit_reason::user_shutdown);
+    self->request(router, infinite, dump_book_v);
+    self->send_exit(router, exit_reason::user_shutdown);
   }
   sys.await_all_actors_done();
 }
