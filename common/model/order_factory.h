@@ -9,6 +9,9 @@
 
 #include "common/model/order.h"
 #include <sstream>
+#include <random>
+#include <string>
+#include <vector>
 
 namespace common::model {
   class OrderFactory {
@@ -31,9 +34,10 @@ namespace common::model {
 
         throw std::invalid_argument(error_text.str());
       }
-
+      // std::vector<std::string> op = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M" };
       return {
         common::get_current_milliseconds(), tokens[0], tokens[1], tokens[2], std::stoi(tokens[3]), std::stod(tokens[4])
+        //       common::get_current_milliseconds(), "", "", op[rand() % op.size()], 0, 0.0
       };
     }
   };

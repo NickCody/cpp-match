@@ -2,40 +2,77 @@
 #include <iostream>
 #include <string>
 
-#include "caf/actor_ostream.hpp"
-#include "caf/actor_system.hpp"
-#include "caf/caf_main.hpp"
-#include "caf/event_based_actor.hpp"
+#include "caf/all.hpp"
 
 #include "common/model/order.h"
 #include "common/model/order_factory.h"
 
+#include "actor_types.h"
+
+using namespace std;
 using namespace caf;
 using namespace common::model;
+using namespace actor_match;
 
-behavior process_order(event_based_actor* self) {
+constexpr auto ONE_SECOND = std::chrono::seconds(1);
+
+behavior order_book(stateful_actor<OrderBook>* self, const string& instrument) {
+  self->state.instrument = instrument;
+
   return {
-    [=](const Order& order) { aout(self) << "Received order: " << order << std::endl; },
+    [=](new_order, const Order& order) {
+      if (order.side == Order::SIDE::BUY) {
+        self->state.buys.push_back(order);
+        std::push_heap(self->state.buys.begin(), self->state.buys.end());
+      } else {
+        self->state.sells.push_back(order);
+        std::push_heap(self->state.sells.begin(), self->state.sells.end());
+      }
+      aout(self) << order.instrument << " => " << self->state.buys.size() + self->state.sells.size() << endl;
+    },
+    [=](dump_book, const string& /*instrument*/) {
+      aout(self) << "Book for " << self->state.instrument << " contains " << self->state.buys.size() << " buy(s) and " << self->state.sells.size()
+                 << " sell(s)" << endl;
+    },
   };
 }
 
-void read_stdin(event_based_actor* self, const actor& po) {
-  auto one_sec = std::chrono::seconds(1);
-  for (std::string line; std::getline(std::cin, line);) {
-    Order order = OrderFactory::from_string(line);
-    self->request(po, one_sec, order);
-  }
+behavior route_order(stateful_actor<OrderBookMap>* self) {
+  return {
+    [=](new_order, const Order& order) -> bool {
+      if (!self->state.order_books.contains(order.instrument)) {
+        self->state.order_books[order.instrument] = self->spawn(order_book, order.instrument);
+      }
+      self->send(self->state.order_books[order.instrument], new_order_v, order);
+      return true;
+    },
+    [=](dump_book) {
+      for (auto book : self->state.order_books) {
+        self->send(book.second, dump_book_v, book.first);
+      }
+    },
+  };
 }
 
 void caf_main(actor_system& sys) {
-  auto po = sys.spawn(process_order);
-  sys.spawn(read_stdin, po);
-  std::cout << sys.has_middleman() << std::endl;
+  cerr << "Actor Match" << endl;
 
-  // for (std::string line; std::getline(std::cin, line);) {
-  //   Order order = OrderFactory::from_string(line);
-  //   std::cout << "Received order: " << order.to_string() << std::endl;
-  // }
+  {
+    scoped_actor self{ sys };
+
+    auto router = sys.spawn(route_order);
+
+    for (std::string line; std::getline(std::cin, line);) {
+      Order order = OrderFactory::from_string(line);
+      // self->send(router, new_order_v, order);
+      self->request(router, infinite, new_order_v, order)
+          .receive([&](const bool& /*added*/) {}, [&](error& err) { aout(self) << to_string(err) << endl; });
+    }
+
+    // self->request(router, infinite, dump_book_v);
+    //  self->send_exit(router, exit_reason::user_shutdown);
+  }
+  sys.await_all_actors_done();
 }
 
-CAF_MAIN()
+CAF_MAIN(id_block::match_id_block)

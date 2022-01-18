@@ -12,18 +12,14 @@
 #include <memory>
 #include <sstream>
 
-#include <caf/inspector_access.hpp>
-
 namespace common::model {
   struct Order {
     enum SIDE { BUY, SELL };
 
     std::chrono::milliseconds timestamp;
-    std::string order_id; // NOTE: Would get perf increase if we maintained symbol
-                          // dictionary
+    std::string order_id;
     SIDE side;
-    std::string instrument; // NOTE: Would get perf increase if we maintained
-                            // symbol dictionary
+    std::string instrument;
     long remaining_quantity;
     double price;
 
@@ -39,8 +35,8 @@ namespace common::model {
       price = order.price;
     }
 
-    Order(std::chrono::milliseconds timestamp, const std::string& order_id, SIDE side, const std::string& instrument,
-          long remaining_quantity, double price) {
+    Order(std::chrono::milliseconds timestamp, const std::string& order_id, SIDE side, const std::string& instrument, long remaining_quantity,
+          double price) {
       this->timestamp = timestamp;
       this->order_id = order_id;
       this->side = side;
@@ -49,8 +45,8 @@ namespace common::model {
       this->price = price;
     }
 
-    Order(std::chrono::milliseconds timestamp, const std::string& order_id, const std::string& side,
-          const std::string& instrument, long remaining_quantity, double price) {
+    Order(std::chrono::milliseconds timestamp, const std::string& order_id, const std::string& side, const std::string& instrument,
+          long remaining_quantity, double price) {
       this->timestamp = timestamp;
       this->order_id = order_id;
       if (side.compare("BUY") == 0)
@@ -64,8 +60,7 @@ namespace common::model {
 
     std::string to_string(char sep = common::FIELD_SEP) const {
       std::ostringstream rep;
-      rep << order_id << sep << (side == SIDE::BUY ? "BUY" : "SELL") << sep << instrument << sep << remaining_quantity
-          << sep << price;
+      rep << order_id << sep << (side == SIDE::BUY ? "BUY" : "SELL") << sep << instrument << sep << remaining_quantity << sep << price;
 
       return rep.str();
     }
@@ -89,21 +84,13 @@ namespace common::model {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Order& o);
-
+  
     bool operator==(const Order& rhs) const {
       return order_id.compare(rhs.order_id) == 0;
     }
 
     bool operator!=(const Order& rhs) const {
       return !(*this == rhs);
-    }
-
-    template <class Inspector> bool inspect(Inspector& f, Order& x) {
-      return f.object(x).fields(f.field("order_id", x.order_id),
-                                f.field("side", x.side),
-                                f.field("instrument", x.instrument),
-                                f.field("remaining_quantity", x.remaining_quantity),
-                                f.field("price", x.price));
     }
   };
 
@@ -115,18 +102,3 @@ namespace common::model {
   bool operator<(const OrderPtr& lhs, const OrderPtr& rhs);
 
 } // namespace common::model
-
-// namespace caf {
-// template <>
-// struct inspector_access<common::model::Order>
-//     : inspector_access_base<common::model::Order> {
-//   template <class Inspector>
-//   static bool apply(Inspector &f, common::model::Order &x) {
-//     return f.object(x).fields(
-//         f.field("order_id", x.order_id), f.field("side", x.side),
-//         f.field("instrument", x.instrument),
-//         f.field("remaining_quantity", x.remaining_quantity),
-//         f.field("price", x.price));
-//   }
-// };
-// } // namespace caf

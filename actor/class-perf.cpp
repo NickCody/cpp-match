@@ -8,9 +8,6 @@
 #include "include/fmt/format.h"
 
 #include "caf/all.hpp"
-#include "caf/actor_system.hpp"
-#include "caf/caf_main.hpp"
-#include "caf/event_based_actor.hpp"
 
 #include "common/stopwatch.h"
 

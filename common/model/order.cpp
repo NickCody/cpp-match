@@ -18,5 +18,7 @@ namespace common::model {
     return os;
   }
 
-  bool operator<(const OrderPtr& lhs, const OrderPtr& rhs) { return *lhs < *rhs; }
+  bool operator<(const OrderPtr& lhs, const OrderPtr& rhs) {
+    return *lhs < *rhs;
+  }
 } // namespace common::model
