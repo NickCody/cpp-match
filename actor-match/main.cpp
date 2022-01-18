@@ -65,7 +65,7 @@ void caf_main(actor_system& sys) {
     for (std::string line; std::getline(std::cin, line);) {
       Order order = OrderFactory::from_string(line);
 
-      // this async send can only be used when max_threads=1
+      // this async send can only be used when caf.ax_threads=1
       self->send(router, new_order_v, order);
 
       // use this when you use multiple threads as it will block and book won't be dumped into all orders sent
