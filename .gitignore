@@ -332,6 +332,8 @@ ASALocalRun/
 # Build output for this sample
 *.out
 
+sample-input/
+
 # Bazel
 bazel-bin
 bazel-out

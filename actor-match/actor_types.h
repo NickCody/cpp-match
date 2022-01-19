@@ -10,13 +10,74 @@ namespace actor_match {
   };
 
   struct OrderBook {
+    using OrderVec = std::vector<common::model::Order>;
+
+    struct BookTuple {
+      OrderVec& contras;
+      OrderVec& peers;
+    };
+
     OrderBook() {
       std::make_heap(buys.begin(), buys.end());
       std::make_heap(sells.begin(), sells.end());
     }
 
-    std::vector<common::model::Order> buys;
-    std::vector<common::model::Order> sells;
+    void match_order(caf::local_actor* self, common::model::Order& order) {
+      BookTuple books = order.side == common::model::Order::SIDE::BUY ? BookTuple{ sells, buys } : BookTuple{ buys, sells };
+
+      while (order.remaining_quantity > 0) {
+        if (books.contras.empty()) {
+          books.contras.push_back(order);
+          std::push_heap(books.contras.begin(), books.contras.end());
+          return;
+        }
+
+        auto& contra_order = books.contras.front();
+
+        if ((order.side == common::model::Order::SIDE::BUY && contra_order.price <= order.price) ||
+            (order.side == common::model::Order::SIDE::SELL && contra_order.price >= order.price)) {
+          int trade_quantity = std::min(order.remaining_quantity, contra_order.remaining_quantity);
+          double price = contra_order.price;
+
+          // Print the trade
+          //
+          aout(self) << "TRADE " << order.instrument << " " << order.order_id << " " << contra_order.order_id << " " << trade_quantity << " " << price
+                     << std::endl;
+
+          order.remaining_quantity -= trade_quantity;
+          contra_order.remaining_quantity -= trade_quantity;
+
+          purge_zero();
+        } else {
+          break;
+        }
+      }
+
+      // If order still has quantity, add it to the book
+      if (order.remaining_quantity > 0) {
+        books.peers.push_back(order);
+        std::push_heap(books.peers.begin(), books.peers.end());
+      }
+    }
+
+    void purge_zero() {
+
+      purge_zero_container(buys);
+      purge_zero_container(sells);
+    }
+
+    void purge_zero_container(OrderVec& c) {
+      if (c.size() == 0)
+        return;
+
+      if (c.front().remaining_quantity == 0) {
+        std::pop_heap(c.begin(), c.end());
+        c.pop_back();
+      }
+    }
+
+    OrderVec buys;
+    OrderVec sells;
     std::string instrument;
   };
 

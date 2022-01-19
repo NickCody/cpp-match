@@ -20,19 +20,12 @@ behavior order_book(stateful_actor<OrderBook>* self, const string& instrument) {
   self->state.instrument = instrument;
 
   return {
-    [=](new_order, const Order& order) {
-      if (order.side == Order::SIDE::BUY) {
-        self->state.buys.push_back(order);
-        std::push_heap(self->state.buys.begin(), self->state.buys.end());
-      } else {
-        self->state.sells.push_back(order);
-        std::push_heap(self->state.sells.begin(), self->state.sells.end());
-      }
-      // aout(self) << order.instrument << " => " << self->state.buys.size() + self->state.sells.size() << endl;
-    },
+    [=](new_order, Order& order) { self->state.match_order(self, order); },
     [=](dump_book, const string& /*instrument*/) {
-      aout(self) << "Book for " << self->state.instrument << " contains " << self->state.buys.size() << " buy(s) and " << self->state.sells.size()
-                 << " sell(s)" << endl;
+      for (auto order : self->state.buys)
+        aout(self) << order << endl;
+      for (auto order : self->state.sells)
+        aout(self) << order << endl;
     },
   };
 }
@@ -65,7 +58,7 @@ void caf_main(actor_system& sys) {
     for (std::string line; std::getline(std::cin, line);) {
       Order order = OrderFactory::from_string(line);
 
-      // this async send can only be used when caf.ax_threads=1
+      // this async send can only be used when caf.max_threads=1
       self->send(router, new_order_v, order);
 
       // use this when you use multiple threads as it will block and book won't be dumped into all orders sent

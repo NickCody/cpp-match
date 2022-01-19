@@ -24,7 +24,7 @@ cc_binary(
     deps = [
         "//actor-match:lib",
         "//common:lib",
-        "//darkpool:lib",
+        "//match-engine:lib",
         "@caf//:main",
         "@fmt//:main",
         "@ncurses//:main",
