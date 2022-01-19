@@ -63,6 +63,7 @@ void caf_main(actor_system& sys) {
 
       // use this when you use multiple threads as it will block and book won't be dumped into all orders sent
       // this is slow
+
       // self->request(router, infinite, new_order_v, order)
       //     .receive([&](const bool& /*added*/) {}, [&](error& err) { aout(self) << to_string(err) << endl; });
     }
