@@ -22,3 +22,23 @@ cc_binary(
         "@ncurses//:main",
     ],
 )
+
+cc_binary(
+    name = "flip",
+    srcs = ["flip.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@fmt//:main",
+        "@ncurses//:main",
+    ],
+)
+
+cc_binary(
+    name = "traversal",
+    srcs = ["traversal.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@fmt//:main",
+        "@ncurses//:main",
+    ],
+)
