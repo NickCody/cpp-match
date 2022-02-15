@@ -16,7 +16,6 @@ RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add - \
     && apt-get update \
     && apt install -y software-properties-common \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
-    && sudo add-apt-repository "deb [arch=amd64] https://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe" \
     && apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
@@ -28,7 +27,7 @@ RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add - \
     vim \
     graphviz xdot \
     ninja-build \
-    clang-format-14 \
+    clang-format \
     docker-ce-cli \
     bazel \
     tree \
