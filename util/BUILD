@@ -42,3 +42,14 @@ cc_binary(
         "@ncurses//:main",
     ],
 )
+
+cc_binary(
+    name = "set",
+    srcs = ["set.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@fmt//:main",
+        "//common:lib"
+    ],
+)
+

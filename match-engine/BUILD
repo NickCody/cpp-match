@@ -29,6 +29,6 @@ cc_binary(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//darkpool:lib",
+        "//match-engine:lib",
     ],
 )
