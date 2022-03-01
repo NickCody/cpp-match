@@ -19,6 +19,28 @@ int sum(vector<int>& seq) {
   return accumulate(seq.begin(), seq.end(), 0);
 }
 
+vector<int> max_ascending_sum(vector<int>& seq) {
+  vector<int> largest_seq;
+  vector<int> local_seq;
+
+  int prev = -1;
+
+  for (size_t i = 0; i < seq.size(); i++) {
+    if (seq[i] > prev) {
+      local_seq.push_back(seq[i]);
+    } else {
+      local_seq.clear();
+      local_seq.push_back(seq[i]);
+    }
+    if (sum(local_seq) > sum(largest_seq)) {
+      largest_seq = local_seq;
+    }
+    prev = seq[i];
+  }
+
+  return largest_seq;
+}
+
 int main() {
   // uncomment to randomize
   // srand(time(NULL));
@@ -30,37 +52,9 @@ int main() {
 
   print_seq("Initial seq: ", seq);
 
-  vector<int> largest_seq;
-  vector<int> local_seq;
+  vector<int> largest_seq = max_ascending_sum(seq);
 
-  int prev = -1;
-
-  // one-pass is all that's needed
-  for (size_t i = 0; i < seq.size(); i++) {
-    if (seq[i] > prev) {
-      // increasing case
-      local_seq.push_back(seq[i]);
-    } else {
-      // decreasing case
-
-      // check for largest
-      if (sum(local_seq) > sum(largest_seq)) {
-        largest_seq = local_seq;
-      }
-
-      // new local_sum is current item
-      local_seq.clear();
-      local_seq.push_back(seq[i]);
-    }
-    prev = seq[i];
-  }
-
-  // last check in case we ended loop and didn't decrease
-  if (sum(local_seq) > sum(largest_seq)) {
-    largest_seq = local_seq;
-  }
-
-  print_seq("subsequence with largest sum: ", largest_seq);
+  print_seq("Subsequence with largest sum: ", largest_seq);
 
   int final_sum = accumulate(largest_seq.begin(), largest_seq.end(), 0);
   cout << "final_sum = " << final_sum << endl;
