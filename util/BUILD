@@ -53,3 +53,13 @@ cc_binary(
     ],
 )
 
+cc_binary(
+    name = "sum",
+    srcs = ["sum.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@fmt//:main",
+        "//common:lib"
+    ],
+)
+
