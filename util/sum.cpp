@@ -1,8 +1,6 @@
 #include <iostream>
-#include <cstdlib>
 #include <vector>
 #include <time.h>
-#include <utility>
 #include <numeric>
 
 using namespace std;
@@ -26,12 +24,12 @@ vector<int> max_ascending_sum(vector<int>& seq) {
   int prev = -1;
 
   for (size_t i = 0; i < seq.size(); i++) {
-    if (seq[i] > prev) {
-      local_seq.push_back(seq[i]);
-    } else {
+    if (seq[i] <= prev) {
       local_seq.clear();
-      local_seq.push_back(seq[i]);
     }
+
+    local_seq.push_back(seq[i]);
+
     if (sum(local_seq) > sum(largest_seq)) {
       largest_seq = local_seq;
     }
@@ -47,7 +45,7 @@ int main() {
 
   vector<int> seq;
   for (size_t i = 0; i < 100; i++) {
-    seq.push_back(rand() % 100);
+    seq.push_back(rand() % 500);
   }
 
   print_seq("Initial seq: ", seq);
