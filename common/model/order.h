@@ -14,6 +14,8 @@
 
 namespace common::model {
   struct Order {
+    typedef std::shared_ptr<Order> OrderPtr;
+
     enum SIDE { BUY, SELL };
 
     std::chrono::milliseconds timestamp;
@@ -83,8 +85,20 @@ namespace common::model {
       }
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const Order& o);
-  
+    friend std::ostream& operator<<(std::ostream& os, const Order& order) {
+      os << "order_id=" << order.order_id << ", "
+         << "side" << (order.side == Order::SIDE::BUY ? "BUY" : "SELL") << ", "
+         << "instrument=" << order.instrument << ", "
+         << "remaining_quantity=" << order.remaining_quantity << ", "
+         << "price=" << order.price;
+
+      return os;
+    }
+
+    bool operator<(const OrderPtr& other) {
+      return *this < other;
+    }
+
     bool operator==(const Order& rhs) const {
       return order_id.compare(rhs.order_id) == 0;
     }
@@ -93,12 +107,5 @@ namespace common::model {
       return !(*this == rhs);
     }
   };
-
-  typedef std::shared_ptr<Order> OrderPtr;
-
-  // NOTE: Only used if we have a collection container OrderPtr and we wanted
-  // ordering based on Order order semantics
-  //
-  bool operator<(const OrderPtr& lhs, const OrderPtr& rhs);
 
 } // namespace common::model

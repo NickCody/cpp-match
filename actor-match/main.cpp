@@ -49,7 +49,7 @@ behavior route_order(stateful_actor<OrderBookMap>* self) {
         self->state.order_books[order.instrument] = self->spawn<OrderBookActor>(order.instrument);
       }
       self->send(self->state.order_books[order.instrument], new_order_v, order);
-      return true;
+      return false;
     },
     [=](dump_book) {
       for (auto book : self->state.order_books) {
@@ -60,8 +60,6 @@ behavior route_order(stateful_actor<OrderBookMap>* self) {
 }
 
 void caf_main(actor_system& sys) {
-  cerr << "Actor Match" << endl;
-
   {
     scoped_actor self{ sys };
 
@@ -69,7 +67,22 @@ void caf_main(actor_system& sys) {
 
     for (std::string line; std::getline(std::cin, line);) {
       Order order = OrderFactory::from_string(line);
+
+      // async send
       self->send(router, new_order_v, order);
+
+      // synchronous send (slow)
+      //
+      if (false) {
+        self->request(router, infinite, new_order_v, order)
+            .receive(
+                [&](const bool& added) {
+                  if (!added) {
+                    aout(self) << "Order was not added: " << order.to_string() << endl;
+                  }
+                },
+                [&](error& err) { aout(self) << to_string(err) << endl; });
+      }
     }
 
     self->request(router, infinite, dump_book_v);

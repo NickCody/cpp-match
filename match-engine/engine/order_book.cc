@@ -46,7 +46,9 @@ namespace darkpool {
     std::make_heap(orders.begin(), orders.end());
   }
 
-  int OrderBook::get_order_book_size() { return buys.size() + sells.size(); }
+  int OrderBook::get_order_book_size() {
+    return buys.size() + sells.size();
+  }
 
   void OrderBook::add_to_book(const Order& order) {
     if (order.side == Order::SIDE::BUY) {

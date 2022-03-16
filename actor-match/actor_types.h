@@ -1,6 +1,8 @@
 #pragma once
 
-#include "caf/actor.hpp"
+#include <map>
+#include <algorithm>
+#include "caf/all.hpp"
 #include "common/model/order.h"
 
 namespace actor_match {
