@@ -5,7 +5,7 @@
 
 
 class-perf {
-  iterations = 1000
+  iterations = 100
   par-threads = [24]
   work-per-iteration = [10us, 100us, 1ms, 5ms, 50ms, 100ms]
   actor-pool-size = [100,200]
