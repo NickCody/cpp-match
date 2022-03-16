@@ -13,8 +13,10 @@
 #include <sstream>
 
 namespace common::model {
+  struct Order;
+  typedef std::shared_ptr<Order> OrderPtr;
+
   struct Order {
-    typedef std::shared_ptr<Order> OrderPtr;
 
     enum SIDE { BUY, SELL };
 
