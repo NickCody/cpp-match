@@ -41,8 +41,8 @@ namespace actor_match {
 
           // Print the trade
           //
-          aout(self) << "TRADE " << order.instrument << " " << order.order_id << " " << contra_order.order_id << " " << trade_quantity << " " << price
-                     << std::endl;
+          caf::aout(self) << "TRADE " << order.instrument << " " << order.order_id << " " << contra_order.order_id << " " << trade_quantity << " "
+                          << price << std::endl;
 
           order.remaining_quantity -= trade_quantity;
           contra_order.remaining_quantity -= trade_quantity;

@@ -14,34 +14,46 @@ using namespace caf;
 using namespace common::model;
 using namespace actor_match;
 
-constexpr auto ONE_SECOND = std::chrono::seconds(1);
+class OrderBookActor : public event_based_actor {
+public:
+  explicit OrderBookActor(actor_config& cfg, const string& instrument)
+      : event_based_actor(cfg),
+        m_instrument(instrument) {
+  }
 
-behavior order_book(stateful_actor<OrderBook>* self, const string& instrument) {
-  self->state.instrument = instrument;
+  behavior make_behavior() override {
 
-  return {
-    [=](new_order, Order& order) { self->state.match_order(self, order); },
-    [=](dump_book, const string& /*instrument*/) {
-      for (auto order : self->state.buys)
-        aout(self) << order << endl;
-      for (auto order : self->state.sells)
-        aout(self) << order << endl;
-    },
-  };
-}
+    return {
+      [this](new_order, Order& order) { m_book.match_order(this, order); },
+      [this](dump_book) {
+        for (auto order : m_book.buys) {
+          aout(this) << order.to_string() << endl;
+        }
+
+        for (auto order : m_book.sells) {
+          aout(this) << order.to_string() << endl;
+        }
+      },
+    };
+  }
+
+private:
+  OrderBook m_book;
+  const string m_instrument;
+};
 
 behavior route_order(stateful_actor<OrderBookMap>* self) {
   return {
     [=](new_order, const Order& order) -> bool {
       if (!self->state.order_books.contains(order.instrument)) {
-        self->state.order_books[order.instrument] = self->spawn(order_book, order.instrument);
+        self->state.order_books[order.instrument] = self->spawn<OrderBookActor>(order.instrument);
       }
       self->send(self->state.order_books[order.instrument], new_order_v, order);
       return true;
     },
     [=](dump_book) {
       for (auto book : self->state.order_books) {
-        self->send(book.second, dump_book_v, book.first);
+        self->send(book.second, dump_book_v);
       }
     },
   };
@@ -57,15 +69,7 @@ void caf_main(actor_system& sys) {
 
     for (std::string line; std::getline(std::cin, line);) {
       Order order = OrderFactory::from_string(line);
-
-      // this async send can only be used when caf.max_threads=1
       self->send(router, new_order_v, order);
-
-      // use this when you use multiple threads as it will block and book won't be dumped into all orders sent
-      // this is slow
-
-      // self->request(router, infinite, new_order_v, order)
-      //     .receive([&](const bool& /*added*/) {}, [&](error& err) { aout(self) << to_string(err) << endl; });
     }
 
     self->request(router, infinite, dump_book_v);
