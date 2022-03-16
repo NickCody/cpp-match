@@ -8,3 +8,7 @@ To run:
 To benchmark:
 
     time bazel run //actor-match:main < sample-input/orders-1m-5k.txt > /dev/null
+
+Non-Actor Benchmark:
+
+    time bazel run //match-engine:main -- 10 16 < sample-input/orders-1m-5k.txt > /dev/null
