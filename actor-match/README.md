@@ -7,4 +7,4 @@ To run:
 
 To benchmark:
 
-    time bazel run //actor-match:main < sample-input/million.txt > /dev/null
+    time bazel run //actor-match:main < sample-input/orders-1m-5k.txt > /dev/null

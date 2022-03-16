@@ -74,6 +74,10 @@ I am happy to fix this limitation is you feel it was a major point of evaluation
 
 ## Testing
 
+### Benchmark
+
+    time bazel run //match-engine:main -- 1000 16 < sample-input/orders-1m-5k.txt > /dev/null
+    
 ### Basic Use Cases
 
 You can generate data and send it to the matching engine like so:
