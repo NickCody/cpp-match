@@ -16,4 +16,6 @@ static const char* cpp_version = "C++Unknown";
 
 #include "include/fmt/format.h"
 
-int main() { std::cout << fmt::format("{}", cpp_version) << std::endl; }
+int main() {
+  std::cout << fmt::format("{}", cpp_version) << std::endl;
+}

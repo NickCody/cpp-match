@@ -111,6 +111,7 @@ CAF_ADD_TYPE_ID(match_id_block, (actor_match::OrderBook))
 CAF_ADD_TYPE_ID(match_id_block, (actor_match::OrderBookMap))
 
 CAF_ADD_ATOM(match_id_block, new_order)
+CAF_ADD_ATOM(match_id_block, close_books)
 CAF_ADD_ATOM(match_id_block, dump_book)
 
 CAF_END_TYPE_ID_BLOCK(match_id_block)

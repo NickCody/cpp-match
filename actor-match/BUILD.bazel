@@ -11,6 +11,9 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//common:lib",
+        "//match-engine:lib",
+        "@caf//:main",
+        "@fmt//:main",
     ],
 )
 
@@ -23,10 +26,5 @@ cc_binary(
     ],
     deps = [
         "//actor-match:lib",
-        "//common:lib",
-        "//match-engine:lib",
-        "@caf//:main",
-        "@fmt//:main",
-        "@ncurses//:main",
     ],
 )
