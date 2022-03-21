@@ -82,7 +82,7 @@ void testOrderGenerator(int count, int num_instruments) {
 
   for (int i = 0; count == -1 || i < count; i++) {
     OrderPtr order = order_generator.generate_random_order();
-    std::cout << order->to_string(' ') << std::endl;
+    std::cout << *order << std::endl;
   }
 
   std::cerr << "Generated " << count << " test orders using " << num_instruments << " instruments." << std::endl;

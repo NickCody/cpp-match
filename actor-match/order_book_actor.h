@@ -37,11 +37,11 @@ namespace actor_match {
           stringstream book_dump;
 
           for (auto order : m_book.buys) {
-            book_dump << order.to_string() << endl;
+            book_dump << order << endl;
           }
 
           for (auto order : m_book.sells) {
-            book_dump << order.to_string() << endl;
+            book_dump << order << endl;
           }
 
           aout(this) << book_dump.str();

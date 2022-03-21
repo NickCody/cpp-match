@@ -49,27 +49,6 @@ namespace common::model {
       this->price = price;
     }
 
-    Order(std::chrono::milliseconds timestamp, const std::string& order_id, const std::string& side, const std::string& instrument,
-          long remaining_quantity, double price) {
-      this->timestamp = timestamp;
-      this->order_id = order_id;
-      if (side.compare("BUY") == 0)
-        this->side = Order::SIDE::BUY;
-      else
-        this->side = Order::SIDE::SELL;
-      this->instrument = instrument;
-      this->remaining_quantity = remaining_quantity;
-      this->price = price;
-    }
-
-    std::string to_string(char sep = common::FIELD_SEP) const {
-      std::ostringstream rep;
-      rep << std::setw(7) << order_id << sep << (side == SIDE::BUY ? "BUY" : "SELL") << sep << instrument << sep << remaining_quantity << sep
-          << price;
-
-      return rep.str();
-    }
-
     // Used for ranking, not meant to compare buys to sells, only buy/buy and
     // sell/sell less means ranked lower low buy price is ranked lower than high
     // buy high sell price is ranked lower than low sell later time is ranked
@@ -89,11 +68,8 @@ namespace common::model {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Order& order) {
-      os << "order_id=" << std::setw(8) << order.order_id << ", "
-         << "side" << (order.side == Order::SIDE::BUY ? "BUY" : "SELL") << ", "
-         << "instrument=" << order.instrument << ", "
-         << "remaining_quantity=" << order.remaining_quantity << ", "
-         << "price=" << order.price;
+      os << std::setw(8) << order.order_id << " " << ((order.side == Order::SIDE::BUY) ? "BUY" : "SELL") << " " << order.instrument << " "
+         << order.remaining_quantity << " " << order.price;
 
       return os;
     }

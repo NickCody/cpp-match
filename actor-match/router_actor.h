@@ -20,30 +20,37 @@ namespace actor_match {
 
   using namespace std;
   using namespace common::model;
+  using book_actor_map_t = map<string, caf::actor>;
 
   class RouterActor : public caf::event_based_actor {
+
   public:
     explicit RouterActor(caf::actor_config& cfg, caf::group grp)
         : event_based_actor(cfg) {
       books_group = grp;
     }
 
+    vector<caf::actor> vector_from_map(const book_actor_map_t& b_map) {
+      vector<caf::actor> book_actors;
+      book_actors.resize(b_map.size());
+      for (auto& entry : b_map) {
+        book_actors.push_back(entry.second);
+      }
+      return book_actors;
+    }
+
     caf::behavior make_behavior() override {
       return {
         [this](new_order, Order order) -> bool {
           if (!book_map.contains(order.instrument)) {
-            auto book = spawn_in_group<OrderBookActor>(books_group, order.instrument);
-            book_map[order.instrument] = book;
+            book_map[order.instrument] = spawn_in_group<OrderBookActor>(books_group, order.instrument);
           }
 
           send(book_map[order.instrument], new_order_v, move(order));
           return true;
         },
         [this](dump_book_summary, size_t count) -> caf::typed_response_promise<size_t> {
-          vector<caf::actor> book_actors;
-          for (auto& entry : book_map) {
-            book_actors.push_back(entry.second);
-          }
+          vector<caf::actor> book_actors = vector_from_map(book_map);
           auto rp = make_response_promise<size_t>();
           fan_out_request<caf::policy::select_all>(book_actors, caf::infinite, get_book_stats())
               .then(
@@ -52,7 +59,7 @@ namespace actor_match {
                     stringstream book_stats;
                     for (auto stats : xs) {
                       book_stats << fmt::format(
-                                        "{}: total {} orders ({},{})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
+                                        "{}: total {} orders ({}, {})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
                                  << endl;
                       total += stats.total_orders;
                     }
