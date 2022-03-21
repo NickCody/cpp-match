@@ -1,18 +1,25 @@
 #pragma once
 
 #include <map>
+#include <string>
 #include <algorithm>
 #include "caf/all.hpp"
 #include "common/model/order.h"
 
 namespace actor_match {
-  struct OrderBookMap {
 
-    std::map<std::string, caf::actor> order_books;
+  using namespace std;
+  using namespace common::model;
+
+  struct BookStats {
+    string instrument;
+    size_t total_orders;
+    size_t open_buys;
+    size_t open_sells;
   };
 
   struct OrderBook {
-    using OrderVec = std::vector<common::model::Order>;
+    using OrderVec = vector<Order>;
 
     struct BookTuple {
       OrderVec& contras;
@@ -20,31 +27,44 @@ namespace actor_match {
     };
 
     OrderBook() {
-      std::make_heap(buys.begin(), buys.end());
-      std::make_heap(sells.begin(), sells.end());
+      make_heap(buys.begin(), buys.end());
+      make_heap(sells.begin(), sells.end());
     }
 
-    void match_order(caf::local_actor* self, common::model::Order& order) {
-      BookTuple books = order.side == common::model::Order::SIDE::BUY ? BookTuple{ sells, buys } : BookTuple{ buys, sells };
+    void delete_order(const string& name) {
+      _delete_order(buys, name);
+      _delete_order(sells, name);
+    }
+
+    void _delete_order(OrderVec& v, const string& name) {
+      auto it = find_if(v.begin(), v.end(), [&](const Order& order) -> bool { return order.order_id == name; });
+      if (it != v.end()) {
+        v.erase(it);
+        make_heap(v.begin(), v.end());
+      }
+    }
+
+    void match_order(caf::local_actor* self, Order order) {
+      BookTuple books = order.side == Order::SIDE::BUY ? BookTuple{ .contras = sells, .peers = buys } : BookTuple{ .contras = buys, .peers = sells };
 
       while (order.remaining_quantity > 0) {
         if (books.contras.empty()) {
-          books.contras.push_back(order);
-          std::push_heap(books.contras.begin(), books.contras.end());
+          books.peers.push_back(move(order));
+          push_heap(books.peers.begin(), books.peers.end());
           return;
         }
 
         auto& contra_order = books.contras.front();
 
-        if ((order.side == common::model::Order::SIDE::BUY && contra_order.price <= order.price) ||
-            (order.side == common::model::Order::SIDE::SELL && contra_order.price >= order.price)) {
-          int trade_quantity = std::min(order.remaining_quantity, contra_order.remaining_quantity);
+        if ((order.side == Order::SIDE::BUY && contra_order.price <= order.price) ||
+            (order.side == Order::SIDE::SELL && contra_order.price >= order.price)) {
+          int trade_quantity = min(order.remaining_quantity, contra_order.remaining_quantity);
           double price = contra_order.price;
 
           // Print the trade
           //
           caf::aout(self) << "TRADE " << order.instrument << " " << order.order_id << " " << contra_order.order_id << " " << trade_quantity << " "
-                          << price << std::endl;
+                          << price << endl;
 
           order.remaining_quantity -= trade_quantity;
           contra_order.remaining_quantity -= trade_quantity;
@@ -57,8 +77,8 @@ namespace actor_match {
 
       // If order still has quantity, add it to the book
       if (order.remaining_quantity > 0) {
-        books.peers.push_back(order);
-        std::push_heap(books.peers.begin(), books.peers.end());
+        books.peers.push_back(move(order));
+        push_heap(books.peers.begin(), books.peers.end());
       }
     }
 
@@ -73,14 +93,14 @@ namespace actor_match {
         return;
 
       if (c.front().remaining_quantity == 0) {
-        std::pop_heap(c.begin(), c.end());
+        pop_heap(c.begin(), c.end());
         c.pop_back();
       }
     }
 
     OrderVec buys;
     OrderVec sells;
-    std::string instrument;
+    string instrument;
   };
 
   template <class Inspector> bool inspect(Inspector& f, OrderBook& order_book) {
@@ -88,9 +108,14 @@ namespace actor_match {
         .fields(f.field("buys", order_book.buys), f.field("sells", order_book.sells), f.field("instrument", order_book.instrument));
   }
 
-  template <class Inspector> bool inspect(Inspector& f, OrderBookMap& order_book_map) {
-    return f.object(order_book_map).fields(f.field("order_books", order_book_map.order_books));
+  template <class Inspector> bool inspect(Inspector& f, BookStats& book_stats) {
+    return f.object(book_stats)
+        .fields(f.field("instrument", book_stats.instrument),
+                f.field("total_orders", book_stats.total_orders),
+                f.field("open_buys", book_stats.open_buys),
+                f.field("open_sells", book_stats.open_sells));
   }
+
 } // namespace actor_match
 
 namespace common::model {
@@ -108,10 +133,14 @@ CAF_BEGIN_TYPE_ID_BLOCK(match_id_block, first_custom_type_id)
 
 CAF_ADD_TYPE_ID(match_id_block, (common::model::Order))
 CAF_ADD_TYPE_ID(match_id_block, (actor_match::OrderBook))
-CAF_ADD_TYPE_ID(match_id_block, (actor_match::OrderBookMap))
+CAF_ADD_TYPE_ID(match_id_block, (actor_match::BookStats))
 
 CAF_ADD_ATOM(match_id_block, new_order)
+CAF_ADD_ATOM(match_id_block, delete_order)
 CAF_ADD_ATOM(match_id_block, close_books)
-CAF_ADD_ATOM(match_id_block, dump_book)
+CAF_ADD_ATOM(match_id_block, dump_book_and_exit)
+CAF_ADD_ATOM(match_id_block, dump_book_summary)
+CAF_ADD_ATOM(match_id_block, get_book_stats)
+CAF_ADD_ATOM(match_id_block, wait_finished)
 
 CAF_END_TYPE_ID_BLOCK(match_id_block)

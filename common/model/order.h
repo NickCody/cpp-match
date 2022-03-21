@@ -64,7 +64,8 @@ namespace common::model {
 
     std::string to_string(char sep = common::FIELD_SEP) const {
       std::ostringstream rep;
-      rep << order_id << sep << (side == SIDE::BUY ? "BUY" : "SELL") << sep << instrument << sep << remaining_quantity << sep << price;
+      rep << std::setw(7) << order_id << sep << (side == SIDE::BUY ? "BUY" : "SELL") << sep << instrument << sep << remaining_quantity << sep
+          << price;
 
       return rep.str();
     }
@@ -88,7 +89,7 @@ namespace common::model {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Order& order) {
-      os << "order_id=" << order.order_id << ", "
+      os << "order_id=" << std::setw(8) << order.order_id << ", "
          << "side" << (order.side == Order::SIDE::BUY ? "BUY" : "SELL") << ", "
          << "instrument=" << order.instrument << ", "
          << "remaining_quantity=" << order.remaining_quantity << ", "

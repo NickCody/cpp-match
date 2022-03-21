@@ -13,8 +13,9 @@
 using namespace common::model;
 
 namespace testutil {
-  OrderGenerator::OrderGenerator(int num_instruments, int instrument_length) {
-    for (int i = 0; i < num_instruments; i++) {
+  OrderGenerator::OrderGenerator(size_t num_instruments, size_t instrument_length)
+      : next_order_id(0) {
+    for (size_t i = 0; i < num_instruments; i++) {
       std::string symbol = generate_random_string(instrument_length);
       std::transform(symbol.begin(), symbol.end(), symbol.begin(), ::toupper);
 
@@ -40,7 +41,9 @@ namespace testutil {
     return (double)r;
   }
 
-  int OrderGenerator::generate_random_quantity(int low, int high) { return (rand() % (high - low)) + low; }
+  int OrderGenerator::generate_random_quantity(int low, int high) {
+    return (rand() % (high - low)) + low;
+  }
 
   Order::SIDE OrderGenerator::generate_random_side() {
     if (rand() % 2 == Order::SIDE::BUY)
@@ -49,7 +52,9 @@ namespace testutil {
       return Order::SIDE::SELL;
   }
 
-  InstrumentPtr OrderGenerator::pick_random_instrument() { return instruments[rand() % instruments.size()]; }
+  InstrumentPtr OrderGenerator::pick_random_instrument() {
+    return instruments[rand() % instruments.size()];
+  }
 
   double OrderGenerator::pick_random_instrument_price(InstrumentPtr instrument, Order::SIDE side) {
     double price = instrument->last;
@@ -60,20 +65,13 @@ namespace testutil {
     return price + variation;
   }
 
-  OrderPtr OrderGenerator::generate_random_order(DupeMap& dupe_map) {
+  OrderPtr OrderGenerator::generate_random_order() {
     auto instrument = pick_random_instrument();
     auto side = generate_random_side();
-    auto order_id = generate_random_string(7);
-    DupeMap::const_iterator it;
-    int i = 0;
-    while (dupe_map.find(order_id) != dupe_map.end()) {
-      std::cerr << "Found dupe order_id (" << i << "): " << order_id << std::endl;
-      order_id = generate_random_string(5);
-      i++;
-    }
+    auto order_id = next_order_id++;
 
     return OrderPtr(new Order(common::get_current_milliseconds(),
-                              order_id,
+                              std::to_string(order_id),
                               side,
                               instrument->name,
                               generate_random_quantity(),

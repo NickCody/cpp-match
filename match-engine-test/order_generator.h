@@ -30,7 +30,8 @@ namespace testutil {
 
     Instrument(std::string name, double last)
         : name(name),
-          last(last) {}
+          last(last) {
+    }
   };
 
   typedef std::shared_ptr<Instrument> InstrumentPtr;
@@ -49,14 +50,15 @@ namespace testutil {
     static Order::SIDE generate_random_side();
 
     std::vector<InstrumentPtr> instruments;
+    size_t next_order_id;
 
   public:
     // Stateful API dependent on static instrument set
     //
-    OrderGenerator(int num_instruments = 10, int instrument_length = 5);
+    explicit OrderGenerator(size_t num_instruments = 10, size_t instrument_length = 7);
     InstrumentPtr pick_random_instrument();
     double pick_random_instrument_price(InstrumentPtr instrument, Order::SIDE side);
-    OrderPtr generate_random_order(DupeMap& dupe_map);
+    OrderPtr generate_random_order();
   };
 } // namespace testutil
 

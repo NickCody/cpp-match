@@ -10,7 +10,8 @@ def global_copts(unwanted_options = []):
         "-Woverloaded-virtual",
         "-Wvla",
         "-pedantic",
-        "-O2"
+        "-O3",
+        "-Ofast",
         # "-Og",
         # "-g",
     ]

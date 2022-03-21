@@ -20,7 +20,9 @@
 #include "test_order_semantics.h"
 #include "order_generator.h"
 
-void pass() { std::cout << "pass" << std::endl; }
+void pass() {
+  std::cout << "pass" << std::endl;
+}
 
 void testOrderFromString(const std::string& os) {
   try {
@@ -68,8 +70,7 @@ void testOrderHeapAllocation(int count) {
     std::vector<OrderPtr> orders;
     for (int i = 0; i < count; i++) {
       std::string order_id = std::to_string(i);
-      orders.push_back(
-          OrderPtr(new Order(common::get_current_milliseconds(), order_id, Order::SIDE::BUY, "XOXO", 100L, 1000.0)));
+      orders.push_back(OrderPtr(new Order(common::get_current_milliseconds(), order_id, Order::SIDE::BUY, "XOXO", 100L, 1000.0)));
     }
   });
 
@@ -78,12 +79,10 @@ void testOrderHeapAllocation(int count) {
 
 void testOrderGenerator(int count, int num_instruments) {
   testutil::OrderGenerator order_generator(num_instruments);
-  testutil::DupeMap dupe_map;
 
   for (int i = 0; count == -1 || i < count; i++) {
-    OrderPtr order = order_generator.generate_random_order(dupe_map);
+    OrderPtr order = order_generator.generate_random_order();
     std::cout << order->to_string(' ') << std::endl;
-    dupe_map[order->order_id] = order;
   }
 
   std::cerr << "Generated " << count << " test orders using " << num_instruments << " instruments." << std::endl;
