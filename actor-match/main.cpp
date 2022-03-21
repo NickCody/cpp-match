@@ -34,12 +34,7 @@ void wait_for_finish(caf::blocking_actor* sender, caf::actor target, size_t coun
   while (!done) {
 
     sender->request(target, caf::infinite, dump_book_summary(), counter)
-        .receive(
-            [&](size_t num_processed) {
-              fmt::print(stderr, "waiting... {} ?? {} \n", num_processed, counter);
-              done = (num_processed == counter);
-            },
-            [&](caf::error&) {});
+        .receive([&](size_t num_processed) { done = (num_processed == counter); }, [&](caf::error&) {});
     this_thread::sleep_for(chrono::milliseconds(200));
   }
 }

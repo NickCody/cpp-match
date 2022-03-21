@@ -56,14 +56,15 @@ namespace actor_match {
               .then(
                   [count, rp](std::vector<BookStats> xs) mutable {
                     size_t total = 0;
-                    stringstream book_stats;
+                    // stringstream book_stats;
                     for (auto stats : xs) {
-                      book_stats << fmt::format(
-                                        "{}: total {} orders ({}, {})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
-                                 << endl;
+                      // book_stats << fmt::format(
+                      //                   "{}: total {} orders ({}, {})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
+                      //            << endl;
                       total += stats.total_orders;
                     }
-                    fmt::print(stderr, "After {} orders, stats =>\n{}", count, book_stats.str());
+                    // fmt::print(stderr, "After {} orders, stats =>\n{}", count, book_stats.str());
+
                     rp.deliver(total);
                   },
                   [](caf::error&) mutable {});

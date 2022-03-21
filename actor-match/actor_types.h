@@ -48,13 +48,13 @@ namespace actor_match {
     }
 
     void match_order(caf::local_actor* self, Order order) {
-      size_t incoming_order_id = atoi(order.order_id.c_str());
-
-      if (highest_order_id > incoming_order_id) {
-        fmt::print(stderr, "ERROR: Got a message out of order {} last highest {}\n", order.order_id, highest_order_id);
-      } else {
-        highest_order_id = incoming_order_id;
-      }
+      // Disable order check (only useful ewhen orderid's are cardinal)
+      // size_t incoming_order_id = atoi(order.order_id.c_str());
+      // if (highest_order_id > incoming_order_id) {
+      //   fmt::print(stderr, "ERROR: Got a message out of order {} last highest {}\n", order.order_id, highest_order_id);
+      // } else {
+      //   highest_order_id = incoming_order_id;
+      // }
 
       BookTuple books = order.side == Order::SIDE::BUY ? BookTuple{ .contras = sells, .peers = buys } : BookTuple{ .contras = buys, .peers = sells };
 
