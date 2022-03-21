@@ -16,3 +16,7 @@ Soecify custom config file:
 Non-Actor Benchmark:
 
     time bazel run //match-engine:main -- 10 16 < sample-input/orders-1m-5k.txt > /dev/null
+
+Billion-row Test
+
+    bazel run //match-engine-test:test_order testOrderGenerator 1000000000 20 | bazel run //actor-match:main -- --config-file=/workspaces/trade/actor-match/match_config.caf 1000000 > /dev/null
