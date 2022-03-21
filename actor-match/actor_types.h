@@ -66,7 +66,8 @@ namespace actor_match {
 
           // Print the trade
           //
-          caf::aout(self) << fmt::format("TRADE {} {} {} {} {}", order.instrument, order.order_id, contra_order.order_id, trade_quantity, price);
+          caf::aout(self) << fmt::format("TRADE {} {} {} {} {}", order.instrument, order.order_id, contra_order.order_id, trade_quantity, price)
+                          << endl;
 
           order.remaining_quantity -= trade_quantity;
           contra_order.remaining_quantity -= trade_quantity;
