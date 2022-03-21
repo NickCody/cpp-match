@@ -3,7 +3,10 @@
 #include <map>
 #include <string>
 #include <algorithm>
+#include "fmt/format.h"
+
 #include "caf/all.hpp"
+
 #include "common/model/order.h"
 
 namespace actor_match {
@@ -63,8 +66,7 @@ namespace actor_match {
 
           // Print the trade
           //
-          caf::aout(self) << "TRADE " << order.instrument << " " << order.order_id << " " << contra_order.order_id << " " << trade_quantity << " "
-                          << price << endl;
+          caf::aout(self) << fmt::format("TRADE {} {} {} {} {}", order.instrument, order.order_id, contra_order.order_id, trade_quantity, price);
 
           order.remaining_quantity -= trade_quantity;
           contra_order.remaining_quantity -= trade_quantity;

@@ -51,14 +51,15 @@ namespace actor_match {
                     size_t total = 0;
                     stringstream book_stats;
                     for (auto stats : xs) {
-                      book_stats << stats.instrument << ": total " << stats.total_orders << " (" << stats.open_buys << ", " << stats.open_sells << ")"
+                      book_stats << fmt::format(
+                                        "{}: total {} orders ({},{})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
                                  << endl;
                       total += stats.total_orders;
                     }
                     fmt::print(stderr, "After {} orders, stats =>\n{}", count, book_stats.str());
                     rp.deliver(total);
                   },
-                  [this](caf::error& err) mutable { aout(this) << "Error: " << caf::to_string(err) << endl; });
+                  [](caf::error&) mutable {});
           return rp;
         },
       };
