@@ -36,12 +36,7 @@ namespace common::model {
       }
       auto side = tokens[1][0] == 'B' ? Order::SIDE::BUY : Order::SIDE::SELL;
 
-      return Order{ .timestamp = common::get_current_milliseconds(),
-                    .order_id = tokens[0],
-                    .side = side,
-                    .instrument = tokens[2],
-                    .remaining_quantity = std::stoi(tokens[3]),
-                    .price = std::stod(tokens[4]) };
+      return Order(common::get_current_milliseconds(), tokens[0], side, tokens[2], std::stoi(tokens[3]), std::stod(tokens[4]));
     }
   };
 } // namespace common::model
