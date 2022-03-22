@@ -25,20 +25,34 @@ using namespace common::model;
 using namespace actor_match;
 using namespace std::chrono;
 
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+//
 template <typename M, typename T> void sync_send(caf::blocking_actor* sender, caf::actor target, const M& msg, const T& arg) {
   sender->request(target, caf::infinite, msg, arg).receive([&](const bool&) {}, [&](caf::error&) {});
 }
 
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+//
 void wait_for_finish(caf::blocking_actor* sender, caf::actor target, size_t counter) {
   bool done = false;
   while (!done) {
-
     sender->request(target, caf::infinite, dump_book_summary(), counter)
         .receive([&](size_t num_processed) { done = (num_processed == counter); }, [&](caf::error&) {});
-    this_thread::sleep_for(chrono::milliseconds(200));
+
+    if (!done)
+      this_thread::sleep_for(chrono::milliseconds(200));
   }
 }
 
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+// Message Flow
+//
+//               +----------+    +----> order book actor 0
+//  +-------+    |          |    |
+//  | stdin | -> |  router  | -> +----> order book actor 1
+//  +-------+    |          |    |      ...
+//               +----------+    +----> order book actor N
+//
 void process(caf::actor_system& sys) {
 
   // How you grab arguments from CAF_MAIN
@@ -52,6 +66,8 @@ void process(caf::actor_system& sys) {
   int async_mode = 1;
   if (argc > 2)
     async_mode = atol(argv[2]);
+
+  fmt::print(stderr, "async_mode={}, report_mod={}\n", async_mode, report_mod);
 
   // scope-based actor (needed for blocking requests)
   //
@@ -77,23 +93,27 @@ void process(caf::actor_system& sys) {
 
     counter++;
     if (report_mod != 0 && counter % report_mod == 0) {
-      self->send(router, dump_book_summary(), counter);
+      self->send<caf::message_priority::high>(router, dump_book_summary(), counter);
     }
   }
 
-  fmt::print(stderr, "Done reading {} orders; waiting to finish processing...\n", counter);
+  fmt::print(stderr, "{} orders read from stdin\n", counter);
 
   wait_for_finish(self.ptr(), router, counter);
 
-  fmt::print(stderr, "All {} orders processed!\n", counter);
+  fmt::print(stderr, "{} orders processed\n", counter);
 
   self->send(books_group, dump_book_and_exit());
   anon_send_exit(router, caf::exit_reason::user_shutdown);
 }
 
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+//
 void caf_main(caf::actor_system& sys) {
   process(sys);
   sys.await_all_actors_done();
 }
 
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+//
 CAF_MAIN(caf::id_block::match_id_block)

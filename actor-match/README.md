@@ -8,10 +8,16 @@ To run:
 To benchmark:
 
     time bazel run //actor-match:main < sample-input/orders-1m-5k.txt > /dev/null
+    time bazel-bin/actor-match/main sample-input/orders-1m-5k.txt > /dev/null
 
 Soecify custom config file:
 
     time bazel run //actor-match:main -- --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-5k.txt > /dev/null
+    
+    time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-5.txt > /dev/null
+    time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-50.txt > /dev/null
+    time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-500.txt > /dev/null
+    time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-5k.txt > /dev/null
 
 Non-Actor Benchmark:
 
@@ -26,3 +32,5 @@ NOTE:
 Billion-row Test
 
     bazel run //match-engine-test:test_order testOrderGenerator 1000000000 20 | bazel run //actor-match:main -- --config-file=/workspaces/trade/actor-match/match_config.caf 1000000 > /dev/null
+
+    bazel-bin/match-engine-test/test_order 1000000000 20 | bazel-bin/actor-match/main --config-file=actor-match/match_config.caf 1000000 > /dev/null

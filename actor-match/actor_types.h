@@ -1,8 +1,10 @@
 #pragma once
 
+#include <chrono>
 #include <map>
 #include <string>
 #include <algorithm>
+#include <thread>
 #include "fmt/format.h"
 
 #include "caf/all.hpp"
@@ -57,6 +59,7 @@ namespace actor_match {
       // }
 
       BookTuple books = order.side == Order::SIDE::BUY ? BookTuple{ .contras = sells, .peers = buys } : BookTuple{ .contras = buys, .peers = sells };
+      this_thread::sleep_for(chrono::microseconds(1));
 
       while (order.remaining_quantity > 0) {
         if (books.contras.empty()) {

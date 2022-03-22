@@ -12,7 +12,7 @@ caf {
     # Maximum number of messages actors can consume in single run (int64 max).
     max-throughput = 9223372036854775807
     # # Maximum number of threads for the scheduler. No hardcoded default.
-    max-threads = 8
+    max-threads = 24
   }
   # Prameters for the work stealing scheduler. Only takes effect if
   # caf.scheduler.policy is set to "stealing".
@@ -20,7 +20,7 @@ caf {
     # Number of zero-sleep-interval polling attempts. (default 100)
     aggressive-poll-attempts = 100
     # Frequency of steal attempts during aggressive polling. (default 10)
-    aggressive-steal-interval = 10
+    aggressive-steal-interval = 12
 
     # Number of moderately aggressive polling attempts. (default 500)
     moderate-poll-attempts = 500
