@@ -52,14 +52,14 @@ namespace actor_match {
         [this](dump_book_summary, size_t count) -> caf::typed_response_promise<size_t> {
           vector<caf::actor> book_actors = vector_from_map(book_map);
           auto rp = make_response_promise<size_t>();
-          fan_out_request<caf::policy::select_all>(book_actors, caf::infinite, get_book_stats())
+          fan_out_request<caf::policy::select_all, caf::message_priority::high>(book_actors, caf::infinite, get_book_stats())
               .then(
                   [count, rp](std::vector<BookStats> xs) mutable {
                     size_t total = 0;
                     stringstream book_stats;
                     for (auto stats : xs) {
                       book_stats << fmt::format(
-                                        "{}: total {} orders ({}, {})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
+                                        "  {}: total {} orders ({}, {})", stats.instrument, stats.total_orders, stats.open_buys, stats.open_sells)
                                  << endl;
                       total += stats.total_orders;
                     }
