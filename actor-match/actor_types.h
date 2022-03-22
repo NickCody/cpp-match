@@ -59,7 +59,9 @@ namespace actor_match {
       // }
 
       BookTuple books = order.side == Order::SIDE::BUY ? BookTuple{ .contras = sells, .peers = buys } : BookTuple{ .contras = buys, .peers = sells };
-      this_thread::sleep_for(chrono::microseconds(1));
+
+      // test code to enhance parallelism
+      // this_thread::sleep_for(chrono::microseconds(1));
 
       while (order.remaining_quantity > 0) {
         if (books.contras.empty()) {

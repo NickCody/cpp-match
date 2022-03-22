@@ -14,6 +14,7 @@ Soecify custom config file:
 
     time bazel run //actor-match:main -- --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-5k.txt > /dev/null
     
+    bazel build //actor-match:main
     time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-5.txt > /dev/null
     time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-50.txt > /dev/null
     time bazel-bin/actor-match/main --config-file=/workspaces/trade/actor-match/match_config.caf < sample-input/orders-1m-500.txt > /dev/null
