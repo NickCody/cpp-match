@@ -45,6 +45,16 @@ void wait_for_finish(caf::blocking_actor* sender, caf::actor target, size_t coun
 }
 
 // --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
+//
+void send_order(caf::blocking_actor* self, caf::actor target, Order& order, bool async_mode) {
+  if (async_mode) {
+    caf::anon_send(target, new_order(), move(order));
+  } else {
+    sync_send<new_order, Order>(self, target, new_order(), order);
+  }
+}
+
+// --=-=-=-=-=-==-=-=-=-==-=-=-=--==-==-=-=-==-=-=-=-==-=-=-=--=-=-=-==-=-==-==
 // Message Flow
 //
 //               +----------+    +----> order book actor 0
@@ -53,43 +63,34 @@ void wait_for_finish(caf::blocking_actor* sender, caf::actor target, size_t coun
 //  +-------+    |          |    |      ...
 //               +----------+    +----> order book actor N
 //
+// one-to-many concepts:
+// - groups
+// - fan_out_request (map/reduce)
+// - actor pools (see class-perf.cpp)
+//
 void process(caf::actor_system& sys) {
 
-  // How you grab arguments from CAF_MAIN
-  //
-  auto [argc, argv] = sys.config().c_args_remainder();
+  auto [argc, argv] = sys.config().c_args_remainder(); // How you grab arguments from CAF_MAIN
 
   size_t report_mod = 0;
   if (argc > 1)
     report_mod = (size_t)atol(argv[1]);
 
-  int async_mode = 1;
+  bool async_mode = true;
   if (argc > 2)
-    async_mode = atol(argv[2]);
+    async_mode = atol(argv[2]) != 0;
 
   fmt::print(stderr, "async_mode={}, report_mod={}\n", async_mode, report_mod);
 
-  // scope-based actor (needed for blocking requests)
-  //
-  caf::scoped_actor self{ sys };
-
-  // Group allows messages to be sent to all actors in group
-  //
-  auto books_group = sys.groups().get_local("books");
-
-  // router will route order to appropriate order book
-  //
-  auto router = sys.spawn<RouterActor>(books_group);
+  caf::scoped_actor self{ sys };                      // scope-based actor (needed for blocking requests)
+  auto books_group = sys.groups().get_local("books"); // Group allows messages to be sent to all actors in group
+  auto router = sys.spawn<RouterActor>(books_group);  // router will route order to appropriate order book
 
   size_t counter = 0;
   for (std::string line; std::getline(std::cin, line);) {
     Order order = OrderFactory::from_string(line);
 
-    if (async_mode != 0) {
-      caf::anon_send(router, new_order(), move(order));
-    } else {
-      sync_send<new_order, Order>(self.ptr(), router, new_order(), order);
-    }
+    send_order(self.ptr(), router, order, async_mode);
 
     counter++;
     if (report_mod != 0 && counter % report_mod == 0) {
