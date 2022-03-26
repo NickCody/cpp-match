@@ -102,4 +102,6 @@
   "editor.formatOnSave": true,
   "clang-format.executable": "/usr/bin/clang-format",
   "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active"
 }
