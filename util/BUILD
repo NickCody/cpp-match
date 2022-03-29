@@ -63,3 +63,12 @@ cc_binary(
     ],
 )
 
+cc_binary(
+    name = "format",
+    srcs = ["format.cpp"],
+    copts = global_copts(),
+    deps = [
+        "@fmt//:main"
+    ],
+)
+
