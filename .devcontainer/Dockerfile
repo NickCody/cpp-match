@@ -69,7 +69,24 @@ RUN sudo apt install -y \
   iputils-ping \
   ssh-askpass \
   npm \
-  tmux
+  tmux \
+  libeigen3-dev \
+  libtool-bin
+
+RUN apt install -y libzmq3-dev \
+  && git clone https://github.com/zeromq/libzmq.git \
+  && cd libzmq \
+  && ./autogen.sh \
+  && ./configure \
+  && make \
+  && make install 
+
+RUN git clone https://github.com/zeromq/cppzmq.git \
+  && cd cppzmq \
+  && mkdir build \
+  && cd build \
+  && cmake .. \
+  && make -j4 install
 
 RUN locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
